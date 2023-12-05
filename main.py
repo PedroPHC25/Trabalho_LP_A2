@@ -21,7 +21,7 @@ shots_cooldown = 50
 shots = []
 
 while True:
-    clock.tick(60)
+    clock.tick(90)
     screen.fill("black")
     shots_cooldown += 1
 
