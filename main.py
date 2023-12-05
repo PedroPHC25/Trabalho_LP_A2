@@ -3,12 +3,16 @@ from pygame.locals import *
 from sys import exit
 from screens import screen, LARGURA, ALTURA
 from player import Ship, Shot
+from sprites import imgs_space
 
 pygame.init()
 pygame.mixer.init()
 
 clock = pygame.time.Clock()
 all_sprites = pygame.sprite.Group()
+
+for each_image in imgs_space:
+    all_sprites.add(each_image)
 
 ship = Ship()
 all_sprites.add(ship)
@@ -20,7 +24,6 @@ while True:
     clock.tick(60)
     screen.fill("black")
     shots_cooldown += 1
-    print(shots_cooldown)
 
     for event in pygame.event.get():
         if event.type == QUIT:
