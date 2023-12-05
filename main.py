@@ -14,7 +14,7 @@ ship = Ship()
 all_sprites.add(ship)
 
 while True:
-    clock.tick(30)
+    clock.tick(60)
     screen.fill("black")
 
     for event in pygame.event.get():
@@ -22,6 +22,25 @@ while True:
             pygame.quit()
             exit()
 
+    if pygame.key.get_pressed()[K_w] and not pygame.key.get_pressed()[K_a] and not pygame.key.get_pressed()[K_d]:
+        ship.move("up")
+    if pygame.key.get_pressed()[K_s] and not pygame.key.get_pressed()[K_a] and not pygame.key.get_pressed()[K_d]:
+        ship.move("down")
+    if pygame.key.get_pressed()[K_a] and not pygame.key.get_pressed()[K_w] and not pygame.key.get_pressed()[K_s]:
+        ship.move("left")
+    if pygame.key.get_pressed()[K_d] and not pygame.key.get_pressed()[K_w] and not pygame.key.get_pressed()[K_s]:
+        ship.move("right")
+    if pygame.key.get_pressed()[K_w] and pygame.key.get_pressed()[K_a]:
+        ship.move("upleft")
+    if pygame.key.get_pressed()[K_w] and pygame.key.get_pressed()[K_d]:
+        ship.move("upright")
+    if pygame.key.get_pressed()[K_s] and pygame.key.get_pressed()[K_a]:
+        ship.move("downleft")
+    if pygame.key.get_pressed()[K_s] and pygame.key.get_pressed()[K_d]:
+        ship.move("downright")
+    
+
     all_sprites.draw(screen)
+    all_sprites.update()
 
     pygame.display.flip()
