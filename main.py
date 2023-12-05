@@ -13,20 +13,24 @@ all_sprites = pygame.sprite.Group()
 ship = Ship()
 all_sprites.add(ship)
 
+shots_cooldown = 50
 shots = []
 
 while True:
     clock.tick(60)
     screen.fill("black")
+    shots_cooldown += 1
+    print(shots_cooldown)
 
     for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()
             exit()
         if event.type == KEYDOWN:
-            if event.key == K_SPACE:
+            if event.key == K_SPACE and shots_cooldown > 50:
                 new_shot = Shot(ship.x, ship.y)
                 all_sprites.add(new_shot)
+                shots_cooldown = 0
 
     if pygame.key.get_pressed()[K_w] and not pygame.key.get_pressed()[K_a] and not pygame.key.get_pressed()[K_d]:
         ship.move("up")
