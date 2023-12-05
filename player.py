@@ -46,3 +46,21 @@ class Ship(pygame.sprite.Sprite):
 
     def update(self):
         self.rect.center = (self.x, self.y)
+
+
+class Shot(pygame.sprite.Sprite):
+    def __init__(self, x, y):
+        pygame.sprite.Sprite.__init__(self)
+        self.x = x
+        self.y = y
+        self.image = spr.img_shot
+        self.rect = self.image.get_rect()
+        self.speed = 10
+        self.rect.center = (self.x, self.y)
+
+    def move(self):
+        self.y = self.y - self.speed
+
+    def update(self):
+        self.move()
+        self.rect.center = (self.x, self.y)
