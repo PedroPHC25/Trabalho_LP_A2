@@ -1,3 +1,8 @@
+"""
+Módulo responsável por carregar e configurar as imagens utilizadas no jogo.
+Elas são utilizadas na "main".
+"""
+
 import pygame
 import os
 from space_sprites import SpaceSprites

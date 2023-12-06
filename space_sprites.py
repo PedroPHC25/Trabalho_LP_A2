@@ -1,3 +1,8 @@
+"""
+Módulo contendo a definição da classe SpaceSprites, responsável pelo background
+do jogo. Ela é invocada no módulo "sprites".
+"""
+
 import pygame
 
 # Classe das imagens de fundo

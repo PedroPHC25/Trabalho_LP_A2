@@ -1,3 +1,8 @@
+"""
+Módulo contendo a definição das classes Ship, responsável pela nave controlada
+pelo jogador, e Shot, referente aos tiros gerados pela nave.
+"""
+
 import pygame
 from screens import LARGURA, ALTURA
 import sprites as spr
