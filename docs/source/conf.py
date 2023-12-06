@@ -11,7 +11,7 @@ import os
 
 sys.path.insert(0, os.path.abspath("../../"))
 
-project = 'Trabalho_LP_A2'
+project = 'Space War'
 copyright = '2023, Maria Eduarda Mesquita Magalhães, Mariana Fernandes Rocha, Paula Eduarda de Lima, Pedro Henrique Coterli'
 author = 'Maria Eduarda Mesquita Magalhães, Mariana Fernandes Rocha, Paula Eduarda de Lima, Pedro Henrique Coterli'
 release = '0.1'
@@ -34,7 +34,7 @@ language = 'pt-br'
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = 'alabaster'
+html_theme = 'furo'
 html_static_path = ['_static']
 
 autodoc_member_order = 'bysource'
