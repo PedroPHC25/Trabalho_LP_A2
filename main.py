@@ -1,7 +1,7 @@
 import pygame
 from pygame.locals import *
 from sys import exit
-from screens import screen, LARGURA, ALTURA
+from screens import screen, LARGURA, ALTURA, font40
 from player import Ship, Shot
 from sprites import imgs_space, list_images_big_meteor, list_images_comet
 from SpaceObjects import BigMeteor, Comet
@@ -54,14 +54,19 @@ for i in range(4):
     all_sprites.add(green_comet)
     y = y - 900
 
-# Adicionando o meteoro 1
-# all_sprites.add(big_meteor)
-
+# Tempo de jogo
+game_time = 0
 
 while True:
     clock.tick(90)
     screen.fill("black")
     shots_cooldown += 1
+    game_time += 1
+
+    # Texto do tempo de jogo
+    text_time = f"{game_time}"
+    formated_text_time = font40.render(text_time, False, "white")
+    screen.blit(formated_text_time, (500, 100))
 
     for event in pygame.event.get():
         if event.type == QUIT:
