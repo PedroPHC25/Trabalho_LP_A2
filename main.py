@@ -4,7 +4,7 @@ from sys import exit
 from screens import screen, LARGURA, ALTURA
 from player import Ship, Shot
 from sprites import imgs_space, list_images_big_meteor
-from enemies import BigMeteor
+from SpaceObjects import BigMeteor
 
 
 # Inicializando o pygame
@@ -31,11 +31,16 @@ shots_cooldown = 50
 # Lista com todos os tiros
 shots = []
 
-#Criando o meteoro grande 
-big_meteor_1 = BigMeteor(0, list_images_big_meteor)
+#Criando os meteoros grandes 
+y = -50
+for i in range(5):
+    big_meteor= BigMeteor(y, list_images_big_meteor)
+    all_sprites.add(big_meteor)
+    y = y - 250
+
 
 # Adicionando o meteoro 1
-all_sprites.add(big_meteor_1)
+# all_sprites.add(big_meteor)
 
 
 while True:
