@@ -1,9 +1,7 @@
 import pygame
 from screens import LARGURA, ALTURA
-from random import randrange
-from screens import LARGURA, ALTURA
 import sprites as spr
-from pygame.locals import QUIT
+from pygame.locals import QUIT, KEYDOWN
 from random import randint
 
 class Alien(pygame.sprite.Sprite):
@@ -19,7 +17,8 @@ class Alien(pygame.sprite.Sprite):
         self.rect.x = -20
         self.rect.y = 10
         
-        self.direcao = 0
+        self.direcao = 1
+        self.atirar = False
 
     def update(self):
         if self.index_lista > 24:
@@ -27,6 +26,11 @@ class Alien(pygame.sprite.Sprite):
         self.index_lista += 0.25
         self.image = self.image_ufo[int(self.index_lista)]
         self.move()
+
+        if self.rect.x > 0 and self.rect.x < LARGURA and self.rect.y > 0 and self.rect.y < ALTURA:
+            self.atirar = True
+        else:
+            self.atirar = False
 
     def move(self):
         if self.direcao == 0:
@@ -41,6 +45,22 @@ class Alien(pygame.sprite.Sprite):
             ufo.rect.x = -80
             self.direcao = randint(0,1)
 
+class Laser(pygame.sprite.Sprite):
+    def __init__(self, alien):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = spr.img_laser
+        self.alien = alien
+        self.rect = self.image.get_rect()
+        self.rect.center = (self.alien.rect.center[0], 2*self.alien.rect.center[1])
+    
+    def move(self):
+        if self.alien.direcao == 0:
+            self.rect.y += 2
+        else:
+            pass
+
+    def update(self):
+        self.move()
 
 ufo = Alien()
 todas_sprites = pygame.sprite.Group()
@@ -49,15 +69,28 @@ todas_sprites.add(ufo)
 pygame.init()
 tela = pygame.display.set_mode((LARGURA, ALTURA))
 relogio = pygame.time.Clock()
-
+all_player_shots = pygame.sprite.Group()
+shots_cooldown = 50
 while True:
     tela.fill((0,0,0))
     relogio.tick(90)
+    
+    shots_cooldown += 1
 
     for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()
-            exit()        
+            exit()   
+        if event.type == KEYDOWN:
+                print("aqui1")
+            # Criar um novo tiro e adicioná-lo ao grupo de sprites ao apertar a barra de espaço
+                if ufo.atirar == True and shots_cooldown > 50:
+                    print("aqui2")
+            # Criar um novo tiro e adicioná-lo ao grupo de sprites ao apertar a barra de espaço:
+                    new_shot = Laser(ufo)
+                    todas_sprites.add(new_shot)
+                    all_player_shots.add(new_shot) 
+                    shots_cooldown = 0    
 
     todas_sprites.draw(tela)
     todas_sprites.update()
