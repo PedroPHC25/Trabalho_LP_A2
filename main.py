@@ -10,6 +10,7 @@ from sounds import player_shot_sound, music
 # Inicializando o pygame
 pygame.init()
 
+# Tocando a música
 pygame.mixer.music.play(-1)
 
 # Relógio para controlar os ticks do jogo
