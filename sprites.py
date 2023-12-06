@@ -47,3 +47,18 @@ list_images_big_meteor = []
 for each_image in paths_images_big_meteor:
     img_big_meteor = pygame.image.load(each_image)
     list_images_big_meteor.append(img_big_meteor)
+
+#############################################################################################
+
+# Carregando as imagens da nave alien
+paths_images_ufo = []
+
+for image in os.listdir("images/ufo"):
+    paths_images_ufo.append(os.path.join("images/ufo", image))
+
+list_images_ufo = []
+
+for each_image in paths_images_ufo:
+    img_ufo = pygame.image.load(each_image)
+    img_ufo = pygame.transform.scale(img_ufo, (img_ufo.get_width()/6, img_ufo.get_height()/6))
+    list_images_ufo.append(img_ufo)
