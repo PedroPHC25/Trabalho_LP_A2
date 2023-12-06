@@ -8,12 +8,12 @@ import os
 from space_sprites import SpaceSprites
 
 # Carregando a imagem da nave
-img_ship = pygame.image.load("images/spiked ship 3. small.blue_.PNG")
-img_ship = pygame.transform.scale(img_ship, (img_ship.get_width()/2, img_ship.get_height()/2))
+img_ship = pygame.image.load("images\Spaceship_tut.png")
+img_ship = pygame.transform.scale(img_ship, (img_ship.get_width()/3, img_ship.get_height()/3))
 
 # Carregando a imagem dos tiros
-img_shot = pygame.image.load("images/beams.png")
-img_shot = pygame.transform.scale(img_shot, (img_shot.get_width()/4, img_shot.get_height()/4))
+img_shot = pygame.image.load("images/20.png")
+img_shot = pygame.transform.scale(img_shot, (img_shot.get_width()/5, img_shot.get_height()/5))
 
 # Lista com os caminhos de cada imagem de fundo
 paths_images_space = []

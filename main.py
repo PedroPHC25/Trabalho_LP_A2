@@ -50,7 +50,7 @@ while True:
         if event.type == KEYDOWN:
             # Criar um novo tiro e adicioná-lo ao grupo de sprites ao apertar a barra de espaço
             if event.key == K_SPACE and shots_cooldown > 50:
-                new_shot = Shot(ship.x, ship.y)
+                new_shot = Shot(ship.x, ship.y - 40)
                 all_sprites.add(new_shot)
                 shots_cooldown = 0
 
