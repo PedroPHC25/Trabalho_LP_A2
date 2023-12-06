@@ -26,11 +26,11 @@ class Ship(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         # Imagem da nave
         self.__image = spr.img_ship
-        self.__rect = self.__image.get_rect()
+        self.__rect = self.image.get_rect()
         # Coordenadas da nave
         self.__x = LARGURA/2
         self.__y = ALTURA/2
-        self.__rect.center = (self.__x, self.__y)
+        self.rect.center = (self.x, self.y)
         # Velocidade da nave
         self.__speed = 5
 
@@ -165,8 +165,8 @@ class Shot(pygame.sprite.Sprite):
         # Coordenadas do tiro
         self.__x = x
         self.__y = y
-        self.__rect = self.__image.get_rect()
-        self.__rect.center = (self.__x, self.__y)
+        self.__rect = self.image.get_rect()
+        self.rect.center = (self.x, self.y)
         # Velocidade do tiro
         self.__speed = 10
 
