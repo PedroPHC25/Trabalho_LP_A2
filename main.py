@@ -3,7 +3,9 @@ from pygame.locals import *
 from sys import exit
 from screens import screen, LARGURA, ALTURA
 from player import Ship, Shot
-from sprites import imgs_space
+from sprites import imgs_space, list_images_big_meteor
+from enemies import BigMeteor
+
 
 # Inicializando o pygame
 pygame.init()
@@ -28,6 +30,13 @@ shots_cooldown = 50
 
 # Lista com todos os tiros
 shots = []
+
+#Criando o meteoro grande 
+big_meteor_1 = BigMeteor(0, list_images_big_meteor)
+
+# Adicionando o meteoro 1
+all_sprites.add(big_meteor_1)
+
 
 while True:
     clock.tick(90)
@@ -67,8 +76,8 @@ while True:
     # para parar de renderizá-lo
     for each_sprite in all_sprites:
         if isinstance(each_sprite, Shot) and each_sprite.y < -50:
-            all_sprites.remove(each_sprite)
-
+            all_sprites.remove(each_sprite)   
+    
     # Desenhando e atualizando todas as sprites
     all_sprites.draw(screen)
     all_sprites.update()
