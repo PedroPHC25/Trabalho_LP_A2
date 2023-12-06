@@ -45,7 +45,7 @@ y = -50
 for i in range(4):
     green_comet = Comet(-50, list_images_comet)
     all_sprites.add(green_comet)
-    y = y - 70
+    y = y - 400
 
 # Adicionando o meteoro 1
 # all_sprites.add(big_meteor)
