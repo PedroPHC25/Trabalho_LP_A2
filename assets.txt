@@ -2,3 +2,5 @@ Todas as imagens e sons foram obtidos por meio da plataforma opengameart.org,
 e o link para cada asset está indicado a seguir:
 
 Imagem de background: https://opengameart.org/content/space-parallax-background
+
+Imagem do meteoro grande: https://opengameart.org/content/asteroids

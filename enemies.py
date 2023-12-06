@@ -19,7 +19,7 @@ class SpaceObject(ABC, pygame.sprite.Sprite):
     def _move(self): ...
         
     def update(self):
-        self.atual = self.atual + 0.5
+        self.atual = self.atual + 0.3
         if self.atual >= len(self.list_images):
             self.atual = 0
 
@@ -33,8 +33,10 @@ class BigMeteor(SpaceObject):
     def _move(self):
         if self.y > 600:
             self.y = 0
-        self.x += 5
-        self.y += 5
+        self.x += 3
+        self.y += 3
+
+    
 
   
 
