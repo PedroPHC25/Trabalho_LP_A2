@@ -1,14 +1,19 @@
+"""
+Módulo responsável por carregar e configurar as imagens utilizadas no jogo.
+Elas são utilizadas na "main".
+"""
+
 import pygame
 import os
 from space_sprites import SpaceSprites
 
 # Carregando a imagem da nave
-img_ship = pygame.image.load("images/spiked ship 3. small.blue_.PNG")
-img_ship = pygame.transform.scale(img_ship, (img_ship.get_width()/2, img_ship.get_height()/2))
+img_ship = pygame.image.load("images\Spaceship_tut.png")
+img_ship = pygame.transform.scale(img_ship, (img_ship.get_width()/3, img_ship.get_height()/3))
 
 # Carregando a imagem dos tiros
-img_shot = pygame.image.load("images/beams.png")
-img_shot = pygame.transform.scale(img_shot, (img_shot.get_width()/4, img_shot.get_height()/4))
+img_shot = pygame.image.load("images/20.png")
+img_shot = pygame.transform.scale(img_shot, (img_shot.get_width()/5, img_shot.get_height()/5))
 
 # Lista com os caminhos de cada imagem de fundo
 paths_images_space = []
@@ -30,3 +35,32 @@ for each_image in paths_images_space:
     imgs_space.append(image_space)
     # Alterando o y para a próxima imagem
     y_image_space -= 600
+
+#############################################################################################
+paths_images_big_meteor = []
+
+for image in os.listdir("images/big_meteor"):
+    paths_images_big_meteor.append(os.path.join("images/big_meteor", image))
+
+
+list_images_big_meteor = []
+
+for each_image in paths_images_big_meteor:
+    img_big_meteor = pygame.image.load(each_image)
+    img_big_meteor= pygame.transform.scale(img_big_meteor, (img_big_meteor.get_width()/2, img_big_meteor.get_height()/2))
+    list_images_big_meteor.append(img_big_meteor)
+
+#############################################################################################
+
+# Carregando as imagens da nave alien
+paths_images_ufo = []
+
+for image in os.listdir("images/ufo"):
+    paths_images_ufo.append(os.path.join("images/ufo", image))
+
+list_images_ufo = []
+
+for each_image in paths_images_ufo:
+    img_ufo = pygame.image.load(each_image)
+    img_ufo = pygame.transform.scale(img_ufo, (img_ufo.get_width()/6, img_ufo.get_height()/6))
+    list_images_ufo.append(img_ufo)

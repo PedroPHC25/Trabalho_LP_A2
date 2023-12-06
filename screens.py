@@ -1,3 +1,7 @@
+"""
+Módulo contendo a geração e configuração das telas do jogo.
+"""
+
 import pygame
 
 # Dimensões da tela do jogo

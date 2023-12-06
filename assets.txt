@@ -1,4 +1,13 @@
 Todas as imagens e sons foram obtidos por meio da plataforma opengameart.org,
-e o link para cada asset está indicado a seguir:
+e a música é a trilha sonora do filme Interestelar, obtida por meio do Youtube.
+O link para cada asset está indicado a seguir:
 
-Imagem de background: https://opengameart.org/content/space-parallax-background
+IMAGENS:
+-- Background: https://opengameart.org/content/space-parallax-background
+-- Nave: https://opengameart.org/content/spaceship-tutorial-0
+-- Tiro do player: https://opengameart.org/content/assets-free-laser-bullets-pack-2020
+-- Meteoro grande: https://opengameart.org/content/asteroids
+
+SONS:
+-- Música: https://youtu.be/HV1CMDhemt0
+-- Tiro do player: https://opengameart.org/content/laser-fire
