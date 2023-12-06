@@ -47,7 +47,7 @@ list_images_big_meteor = []
 
 for each_image in paths_images_big_meteor:
     img_big_meteor = pygame.image.load(each_image)
-    img_big_meteor= pygame.transform.scale(img_big_meteor, (img_big_meteor.get_width()/2, img_big_meteor.get_height()/2))
+    img_big_meteor= pygame.transform.scale(img_big_meteor, (img_big_meteor.get_width()/4, img_big_meteor.get_height()/4))
     list_images_big_meteor.append(img_big_meteor)
 
 #############################################################################################

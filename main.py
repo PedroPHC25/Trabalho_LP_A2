@@ -38,7 +38,7 @@ y = -50
 for i in range(5):
     big_meteor= BigMeteor(y, list_images_big_meteor)
     all_sprites.add(big_meteor)
-    y = y - 250
+    y = y - 700
 
 
 # Adicionando o meteoro 1
