@@ -3,7 +3,7 @@ from pygame.locals import *
 from sys import exit
 from screens import screen, LARGURA, ALTURA, font40
 from player import Ship, Shot
-from sprites import imgs_space, list_images_big_meteor, list_images_comet
+from sprites import imgs_space, list_images_big_meteor, list_images_fireball
 from SpaceObjects import BigMeteor, Comet
 from sounds import player_shot_sound, music
 
@@ -47,11 +47,12 @@ for i in range(5):
     all_enemies.add(big_meteor)
     y = y - 700
 
+
 #Criando o cometa 
 y = -50
 for i in range(4):
-    green_comet = Comet(-50, list_images_comet)
-    all_sprites.add(green_comet)
+    fireball = Comet(-50, list_images_fireball)
+    all_sprites.add(fireball)
     y = y - 900
 
 # Tempo de jogo
