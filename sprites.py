@@ -15,22 +15,6 @@ img_ship = pygame.transform.scale(img_ship, (img_ship.get_width()/3, img_ship.ge
 img_shot = pygame.image.load("images/20.png")
 img_shot = pygame.transform.scale(img_shot, (img_shot.get_width()/5, img_shot.get_height()/5))
 
-#################################################################################################################################
-
-paths_images_fireball = []
-
-for image in os.listdir("images/fireball"):
-    paths_images_fireball.append(os.path.join("images/fireball", image))
-
-
-list_images_fireball = []
-
-for each_image in paths_images_fireball:
-    img_fireball = pygame.image.load(each_image)
-    img_fireball= pygame.transform.scale(img_fireball, (img_fireball.get_width()/4, img_fireball.get_height()/4))
-    list_images_fireball.append(img_fireball)
- #################################################################################################################################3
-
 # Lista com os caminhos de cada imagem de fundo
 paths_images_space = []
 
@@ -68,6 +52,33 @@ for each_image in paths_images_big_meteor:
 
 #############################################################################################
 
+#####################################################  FIREBALL  ###################################################################
+
+# Lista para armazenar os caminhos das imagens de fireball
+paths_images_fireball = []
+
+# Itera sobre os arquivos no diretório "images/fireball"
+for image in os.listdir("images/fireball"):
+    # Adiciona o caminho completo da imagem à lista
+    paths_images_fireball.append(os.path.join("images/fireball", image))
+
+# Lista para armazenar as imagens de fireball
+list_images_fireball = []
+
+# Itera sobre cada caminho de imagem na lista
+for each_image in paths_images_fireball:
+    # Carrega a imagem usando Pygame
+    img_fireball = pygame.image.load(each_image)
+    
+    # Redimensiona a imagem para um quarto do tamanho original
+    img_fireball = pygame.transform.scale(img_fireball, (img_fireball.get_width() // 4, img_fireball.get_height() // 4))
+    
+    # Adiciona a imagem redimensionada à lista
+    list_images_fireball.append(img_fireball)
+
+ ##################################################################################################################################
+
+
 # Carregando as imagens da nave alien
 paths_images_ufo = []
 
@@ -80,3 +91,8 @@ for each_image in paths_images_ufo:
     img_ufo = pygame.image.load(each_image)
     img_ufo = pygame.transform.scale(img_ufo, (img_ufo.get_width()/6, img_ufo.get_height()/6))
     list_images_ufo.append(img_ufo)
+
+#############################################################################################
+# Carregando a imagem do laser
+img_laser= pygame.image.load("images/laser/blue_laser.png")
+img_laser = pygame.transform.scale(img_laser, (img_laser.get_width()/5, img_shot.get_height()/5))
