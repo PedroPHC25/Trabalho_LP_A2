@@ -33,6 +33,8 @@ class Ship(pygame.sprite.Sprite):
         self.rect.center = (self.x, self.y)
         # Velocidade da nave
         self.__speed = 5
+        # Vida da nave
+        self.__health = 5
 
     # Propriedades para os atributos da classe
     @property
@@ -70,6 +72,13 @@ class Ship(pygame.sprite.Sprite):
         """
         return self.__speed
     
+    @property
+    def health(self):
+        """
+        Propriedade do atributo health.
+        """
+        return self.__health
+    
     # Setters dos atributos necessários
     @x.setter
     def x(self, new_x):
@@ -90,6 +99,16 @@ class Ship(pygame.sprite.Sprite):
         :type new_y: int
         """
         self.__y = new_y
+
+    @health.setter
+    def health(self, new_health):
+        """
+        Setter do atributo health.
+
+        :param new_health: Nova vida.
+        :type new_health: int
+        """
+        self.__health = new_health
 
     # Método para movimentar a nave
     def move(self, direction):
@@ -130,6 +149,10 @@ class Ship(pygame.sprite.Sprite):
                 self.y = self.y + self.speed/math.sqrt(2)
             if self.x < LARGURA - self.rect.width/2:
                 self.x = self.x + self.speed/math.sqrt(2)
+
+    # Método para fazer a nave tomar dano
+    def take_damage(self):
+        self.health -= 1
 
     # Método padrão para atualizar as coordenadas da imagem
     def update(self):
