@@ -15,6 +15,10 @@ img_ship = pygame.transform.scale(img_ship, (img_ship.get_width()/3, img_ship.ge
 img_shot = pygame.image.load("images/20.png")
 img_shot = pygame.transform.scale(img_shot, (img_shot.get_width()/5, img_shot.get_height()/5))
 
+# Carregando a imagem do cometa verde
+img_green_comet = pygame.image.load("images/green_comet.png")
+img_green_comet = pygame.transform.scale(img_green_comet, (img_green_comet.get_width()/5, img_green_comet.get_height()/5))
+
 # Lista com os caminhos de cada imagem de fundo
 paths_images_space = []
 
