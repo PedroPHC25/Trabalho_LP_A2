@@ -5,6 +5,7 @@ que causam dano na nave, como meteoros e cometas.
 import pygame
 from abc import ABC, abstractmethod
 from random import randrange
+from screens import ALTURA, LARGURA
 
 # Classe abstrata que define o que todo objeto espacial deve ter
 class SpaceObject(ABC, pygame.sprite.Sprite):
@@ -18,6 +19,8 @@ class SpaceObject(ABC, pygame.sprite.Sprite):
         self.image = list_images[self.atual]
         self.rect = self.image.get_rect()
         self.rect.center = (self.x, self.y) 
+        self.x_speed = 3 
+        self.y_speed = 3
 
     # Método abstrato que define a movimentação do objeto    
     @abstractmethod
@@ -37,10 +40,16 @@ class SpaceObject(ABC, pygame.sprite.Sprite):
 class BigMeteor(SpaceObject):
     # Redefinição do método abstrato que controla a movimentação
     def _move(self):
-        if self.y > 600:
-            self.y = 0
-        self.x += 3
-        self.y += 3
+        if self.y > ALTURA + 100:
+            self.y = randrange(-600, -200)
+            self.x = randrange(50, 550)
+        self.x += self.x_speed 
+        self.y += self.y_speed
+
+        if self.x > LARGURA-(20) or self.x < (20):
+            self.x_speed = self.x_speed * (-1)
+
+
 
     
 
