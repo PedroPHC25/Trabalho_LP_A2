@@ -19,6 +19,8 @@ clock = pygame.time.Clock()
 # Grupo com todos os objetos que serão exibidos
 all_sprites = pygame.sprite.Group()
 
+all_enemies = pygame.sprite.Group()
+
 # Adicionando as imagens do fundo no grupo
 for each_image in imgs_space:
     all_sprites.add(each_image)
@@ -38,6 +40,7 @@ y = -50
 for i in range(5):
     big_meteor= BigMeteor(y, list_images_big_meteor)
     all_sprites.add(big_meteor)
+    all_enemies.add(big_meteor)
     y = y - 700
 
 #Criando o cometa 
@@ -92,6 +95,13 @@ while True:
         if isinstance(each_sprite, Shot) and each_sprite.y < -50:
             all_sprites.remove(each_sprite)   
     
+    collisions = pygame.sprite.spritecollide(ship, all_enemies, True, pygame.sprite.collide_mask)
+
+    if collisions:
+        new_meteor = BigMeteor(-500, list_images_big_meteor)
+        all_sprites.add(new_meteor)
+        all_enemies.add(new_meteor)
+
     # Desenhando e atualizando todas as sprites
     all_sprites.draw(screen)
     all_sprites.update()
