@@ -42,10 +42,11 @@ class BigMeteor(SpaceObject):
     def _move(self):
         if self.y > ALTURA + 100:
             self.y = randrange(-600, -200)
+            self.x = randrange(50, 550)
         self.x += self.x_speed 
         self.y += self.y_speed
 
-        if self.x > LARGURA or self.x < 0:
+        if self.x > LARGURA-(20) or self.x < (20):
             self.x_speed = self.x_speed * (-1)
 
 
