@@ -8,8 +8,8 @@ import os
 from space_sprites import SpaceSprites
 
 # Carregando a imagem da nave
-img_ship = pygame.image.load("images/spiked ship 3. small.blue_.PNG")
-img_ship = pygame.transform.scale(img_ship, (img_ship.get_width()/2, img_ship.get_height()/2))
+img_ship = pygame.image.load("images\Spaceship_tut.png")
+img_ship = pygame.transform.scale(img_ship, (img_ship.get_width()/3, img_ship.get_height()/3))
 
 # Carregando a imagem dos tiros
 img_shot = pygame.image.load("images/beams.png")
