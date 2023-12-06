@@ -1,3 +1,8 @@
+"""
+Módulo contendo a definição das classes Ship, responsável pela nave controlada
+pelo jogador, e Shot, referente aos tiros gerados pela nave.
+"""
+
 import pygame
 from screens import LARGURA, ALTURA
 import sprites as spr
@@ -5,7 +10,19 @@ import math
 
 # Classe da nave do player
 class Ship(pygame.sprite.Sprite):
+    """
+    Classe da nave controlada pelo jogador.
+
+    :ivar image: Imagem do objeto.
+    :ivar rect: Retângulo utilizado para orientar a imagem.
+    :ivar x: Coordenada x do objeto.
+    :ivar y: Coordenada y do objeto.
+    :ivar speed: Velocidade do objeto.
+    """
     def __init__(self):
+        """
+        Construtor da classe Ship.
+        """
         pygame.sprite.Sprite.__init__(self)
         # Imagem da nave
         self.image = spr.img_ship
@@ -19,6 +36,12 @@ class Ship(pygame.sprite.Sprite):
 
     # Método para movimentar a nave
     def move(self, direction):
+        """
+        Método que movimenta a nave de acordo com o pressionamento das teclas WASD.
+
+        :param direction: Indica a direção para a qual o movimento ocorrerá.
+        :type direction: str
+        """
         # Para cima, baixo, esquerda e direita
         if direction == "up" and self.y > 0 + self.rect.height/2:
             self.y = self.y - self.speed
@@ -53,12 +76,32 @@ class Ship(pygame.sprite.Sprite):
 
     # Método padrão para atualizar as coordenadas da imagem
     def update(self):
+        """
+        Atualizador da sprite da classe Ship.
+        """
         self.rect.center = (self.x, self.y)
 
 
 # Classe dos tiros do player
 class Shot(pygame.sprite.Sprite):
+    """
+    Classe dos tiros gerados pela nave.
+
+    :ivar image: Imagem do objeto.
+    :ivar rect: Retângulo utilizado para orientar a imagem.
+    :ivar x: Coordenada x do objeto.
+    :ivar y: Coordenada y do objeto.
+    :ivar speed: Velocidade do objeto.
+    """
     def __init__(self, x, y):
+        """
+        Inicializador do objeto.
+
+        :param x: Coordenada x de surgimento do objeto.
+        :type x: int
+        :param y: Coordenada y de surgimento do objeto.
+        :type y: int
+        """
         pygame.sprite.Sprite.__init__(self)
         # Imagem do tiro
         self.image = spr.img_shot
@@ -72,10 +115,16 @@ class Shot(pygame.sprite.Sprite):
 
     # Método para movimentar o tiro
     def move(self):
+        """
+        Método que movimenta o tiro para cima.
+        """
         self.y = self.y - self.speed
 
     # Método para atualizar a posição da imagem do tiro
     def update(self):
+        """
+        Atualizador da sprite da classe Ship.
+        """
         # O "move" foi chamado aqui por praticidade, já que o update já seria chamado de qualquer forma
         self.move()
         self.rect.center = (self.x, self.y)
