@@ -18,7 +18,7 @@ img_shot = pygame.transform.scale(img_shot, (img_shot.get_width()/5, img_shot.ge
 #################################################################################################################################
 
 # Carregando a imagem do cometa verde
-img_green_comet = pygame.image.load("images/green_comet.png")
+img_green_comet = pygame.image.load("images/copy_green_comet.png")
 img_green_comet_1 = pygame.transform.scale(img_green_comet, (img_green_comet.get_width()/0.5, img_green_comet.get_height()/0.5))
 img_green_comet_2 = pygame.transform.scale(img_green_comet, (img_green_comet.get_width()/0.6, img_green_comet.get_height()/0.6))
 
