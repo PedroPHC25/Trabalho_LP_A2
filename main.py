@@ -1,7 +1,7 @@
 import pygame
 from pygame.locals import *
 from sys import exit
-from screens import screen, LARGURA, ALTURA
+from screens import screen, LARGURA, ALTURA, font20
 from player import Ship, Shot
 from sprites import imgs_space, list_images_big_meteor, list_images_fireball
 from SpaceObjects import BigMeteor, Comet
@@ -41,29 +41,32 @@ shots = []
 
 #Criando os meteoros grandes 
 y = -50
-for i in range(5):
+for i in range(3):
     big_meteor= BigMeteor(y, list_images_big_meteor)
     all_sprites.add(big_meteor)
     all_enemies.add(big_meteor)
     y = y - 700
 
-
 #Criando o cometa 
 y = -50
-for i in range(4):
-    fireball = Comet(-50, list_images_fireball)
+for i in range(2):
+    fireball = Comet(y, list_images_fireball)
     all_sprites.add(fireball)
+    all_enemies.add(fireball)
     y = y - 900
 
-
-# Adicionando o meteoro 1
-# all_sprites.add(big_meteor)
-
+# Tempo de jogo
+game_time = 0
 
 while True:
     clock.tick(90)
     screen.fill("black")
     shots_cooldown += 1
+    game_time += 1
+
+    # Texto do tempo de jogo
+    text_time = f"{game_time//10}"
+    formated_text_time = font20.render(text_time, False, "white")
 
     for event in pygame.event.get():
         if event.type == QUIT:
@@ -110,6 +113,10 @@ while True:
         new_meteor = BigMeteor(-500, list_images_big_meteor)
         all_sprites.add(new_meteor)
         all_enemies.add(new_meteor)
+        # Cria um novo cometa no lugar
+        fireball = Comet(-500, list_images_fireball)
+        all_sprites.add(fireball)
+        all_enemies.add(fireball)
         # Dá dano na nave
         ship.take_damage()
 
@@ -120,6 +127,11 @@ while True:
         new_meteor = BigMeteor(-500, list_images_big_meteor)
         all_sprites.add(new_meteor)
         all_enemies.add(new_meteor)
+        # Cria um novo cometa no lugar
+        fireball = Comet(-500, list_images_fireball)
+        all_sprites.add(fireball)
+        all_enemies.add(fireball)
+        game_time += 200
 
     # Caso a vida chegue a 0, tela de game over
     if ship.health <= 0:
@@ -129,6 +141,7 @@ while True:
     # Desenhando e atualizando todas as sprites
     all_sprites.draw(screen)
     all_sprites.update()
+    screen.blit(formated_text_time, (500, 50))
 
     pygame.draw.rect(screen, "white", (30, 30, 250, 10))
     pygame.draw.rect(screen, "red", (30, 30, ship.health*50, 10))
