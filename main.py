@@ -1,7 +1,7 @@
 import pygame
 from pygame.locals import *
 from sys import exit
-from screens import screen, LARGURA, ALTURA, font40
+from screens import screen, LARGURA, ALTURA, font20
 from player import Ship, Shot
 from sprites import imgs_space, list_images_big_meteor, list_images_fireball
 from SpaceObjects import BigMeteor, Comet
@@ -51,7 +51,7 @@ for i in range(5):
 #Criando o cometa 
 y = -50
 for i in range(4):
-    fireball = Comet(-50, list_images_fireball)
+    fireball = Comet(y, list_images_fireball)
     all_sprites.add(fireball)
     y = y - 900
 
@@ -65,9 +65,8 @@ while True:
     game_time += 1
 
     # Texto do tempo de jogo
-    text_time = f"{game_time}"
-    formated_text_time = font40.render(text_time, False, "white")
-    screen.blit(formated_text_time, (500, 100))
+    text_time = f"{game_time//10}"
+    formated_text_time = font20.render(text_time, False, "white")
 
     for event in pygame.event.get():
         if event.type == QUIT:
@@ -133,6 +132,7 @@ while True:
     # Desenhando e atualizando todas as sprites
     all_sprites.draw(screen)
     all_sprites.update()
+    screen.blit(formated_text_time, (500, 50))
 
     pygame.draw.rect(screen, "white", (30, 30, 250, 10))
     pygame.draw.rect(screen, "red", (30, 30, ship.health*50, 10))

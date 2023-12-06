@@ -15,4 +15,4 @@ ALTURA = 600
 screen = pygame.display.set_mode((LARGURA, ALTURA))
 pygame.display.set_caption("Space War")
 
-font40 = pygame.font.SysFont("arialblack", 40, True, False)
+font20 = pygame.font.SysFont("arialblack", 20, True, False)
