@@ -1,0 +1,7 @@
+Ship
+====
+
+.. autoclass:: player.Ship
+    :members:
+    :undoc-members:
+    :show-inheritance:
