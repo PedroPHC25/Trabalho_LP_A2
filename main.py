@@ -3,8 +3,8 @@ from pygame.locals import *
 from sys import exit
 from screens import screen, LARGURA, ALTURA
 from player import Ship, Shot
-from sprites import imgs_space, list_images_big_meteor
-from SpaceObjects import BigMeteor
+from sprites import imgs_space, list_images_big_meteor, list_images_comet
+from SpaceObjects import BigMeteor, Comet
 from sounds import player_shot_sound, music
 
 # Inicializando o pygame
@@ -40,6 +40,12 @@ for i in range(5):
     all_sprites.add(big_meteor)
     y = y - 700
 
+#Criando o cometa 
+y = -50
+for i in range(4):
+    green_comet = Comet(-50, list_images_comet)
+    all_sprites.add(green_comet)
+    y = y - 70
 
 # Adicionando o meteoro 1
 # all_sprites.add(big_meteor)
