@@ -1,6 +1,6 @@
 #!C:\Users\pedro\OneDrive - Fundacao Getulio Vargas - FGV\2. Linguagens de Programação\Trabalho_LP_A2\.venv\Scripts\python.exe
 
-# $Id: rst2xml.py 9115 2022-07-28 17:06:24Z milde $
+# $Id: rst2xml.py 8927 2022-01-03 23:50:05Z milde $
 # Author: David Goodger <goodger@python.org>
 # Copyright: This module has been placed in the public domain.
 
@@ -11,7 +11,7 @@ A minimal front end to the Docutils Publisher, producing Docutils XML.
 try:
     import locale
     locale.setlocale(locale.LC_ALL, '')
-except Exception:
+except:
     pass
 
 from docutils.core import publish_cmdline, default_description
