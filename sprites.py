@@ -76,3 +76,8 @@ for each_image in paths_images_ufo:
     img_ufo = pygame.image.load(each_image)
     img_ufo = pygame.transform.scale(img_ufo, (img_ufo.get_width()/6, img_ufo.get_height()/6))
     list_images_ufo.append(img_ufo)
+
+#############################################################################################
+# Carregando a imagem do laser
+img_laser= pygame.image.load("images/laser/blue_laser.png")
+img_laser = pygame.transform.scale(img_laser, (img_laser.get_width()/5, img_shot.get_height()/5))
