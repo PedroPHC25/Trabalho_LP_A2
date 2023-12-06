@@ -35,3 +35,15 @@ for each_image in paths_images_space:
     imgs_space.append(image_space)
     # Alterando o y para a próxima imagem
     y_image_space -= 600
+
+#############################################################################################
+paths_images_big_meteor = []
+
+for image in os.listdir("images/big_meteor"):
+    paths_images_big_meteor.append(os.path.join("images/big_meteor", image))
+
+list_images_big_meteor = []
+
+for each_image in paths_images_big_meteor:
+    img_big_meteor = pygame.image.load(each_image)
+    list_images_big_meteor.append(img_big_meteor)
