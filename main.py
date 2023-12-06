@@ -5,11 +5,13 @@ from screens import screen, LARGURA, ALTURA
 from player import Ship, Shot
 from sprites import imgs_space, list_images_big_meteor
 from SpaceObjects import BigMeteor
-
+from sounds import player_shot_sound, music
 
 # Inicializando o pygame
 pygame.init()
-pygame.mixer.init()
+
+# Tocando a música
+pygame.mixer.music.play(-1)
 
 # Relógio para controlar os ticks do jogo
 clock = pygame.time.Clock()
@@ -58,6 +60,7 @@ while True:
                 new_shot = Shot(ship.x, ship.y - 40)
                 all_sprites.add(new_shot)
                 shots_cooldown = 0
+                player_shot_sound.play()
 
     # Movimentação do player por WASD
     if pygame.key.get_pressed()[K_w] and not pygame.key.get_pressed()[K_a] and not pygame.key.get_pressed()[K_d]:
