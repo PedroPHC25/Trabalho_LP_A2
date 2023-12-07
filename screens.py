@@ -16,10 +16,10 @@ screen = pygame.display.set_mode((LARGURA, ALTURA))
 pygame.display.set_caption("Space War")
 
 # Fontes
-font20 = pygame.font.SysFont("arialblack", 20, True, False)
-font40 = pygame.font.SysFont("arialblack", 40, True, False)
-font30 = pygame.font.SysFont("arialblack", 30, True, False)
-font60 = pygame.font.SysFont("arialblack", 60, True, False)
+font20 = pygame.font.SysFont("gillsans", 20, False, False)
+font40 = pygame.font.SysFont("gillsans", 40, False, False)
+font30 = pygame.font.SysFont("gillsans", 30, False, False)
+font60 = pygame.font.SysFont("gillsans", 60, False, False)
 
 # Textos da tela de game over
 text_game_over_1 = "Fim de jogo"
@@ -32,3 +32,5 @@ text_start_1 = "Space War"
 formated_text_start_1 = font60.render(text_start_1, False, "white")
 text_start_2 = "Aperte qualquer tecla para começar"
 formated_text_start_2 = font20.render(text_start_2, False, "white")
+
+# print(pygame.font.get_fonts())
