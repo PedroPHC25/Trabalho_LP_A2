@@ -9,81 +9,109 @@ class Ufo(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
         # Adicionando a imagem 
-        self.image_ufo = spr.list_images_ufo
+        self.__image_ufo = spr.list_images_ufo
 
         # Uma variável para alterna entre as imagens 
-        self.index_lista = 0
-        self.image = self.image_ufo[self.index_lista]
+        self.__index_lista = 0
+        self.__image = self.__image_ufo[self.__index_lista]
 
-        self.rect = self.image.get_rect()
+        self.__rect = self.__image.get_rect()
         
         # Definindo onde vai ser a primeira geração do objeto
-        self.rect.x = - LARGURA
-        self.rect.y = 50
+        self.__rect.x = - LARGURA
+        self.__rect.y = 50
         
-        self.direcao = 0
-        self.atirar = False
+        self.__direcao = 0
+        self.__atirar = 0
+    
+    @property
+    def atirar(self):
+        return self.__atirar
+    
+    @atirar.setter
+    def atirar(self, new_atirar):
+        self.__atirar = new_atirar
+
+    @property
+    def rect(self):
+        return self.__rect
+    
+    @property
+    def image(self):
+        return self.__image
+    
+    @property
+    def direcao(self):
+        return self.__direcao
+
 
     def update(self):
 
         # Alternando entre as imagens 
-        if self.index_lista > 24:
-            self.index_lista = 0
-        self.index_lista += 0.25
-        self.image = self.image_ufo[int(self.index_lista)]
+        if self.__index_lista > 24:
+            self.__index_lista = 0
+        self.__index_lista += 0.25
+        self.__image = self.__image_ufo[int(self.__index_lista)]
 
         # Mover a nave pelo eixo x
         self.move()
 
         # Se a nave  estiver na tela a variável será verdadeira
-        if self.rect.x > 10 and self.rect.x < LARGURA:
-            self.atirar = True
+        if self.__rect.x > 10 and self.__rect.x < LARGURA:
+            self.atirar = 1
         else:
-            self.atirar = False
+            self.atirar = 0
 
         # Antes de passar na tela, o efeito sonoro é ativado
-        if self.rect.x == -100:
+        if self.__rect.x == -100:
             ufo_sound.play()
 
     def move(self):
         # Movimentação pelo eixo x
-        self.rect.x += 1
+        self.__rect.x += 1
 
         # Definindo o surgimento abaixo ou acima da tela
-        if self.direcao == 0:
-            self.rect.y = 50
+        if self.__direcao == 0:
+            self.__rect.y = 50
 
-        if self.direcao == 1:
-            self.rect.y = 540       
+        if self.__direcao == 1:
+            self.__rect.y = 540       
 
         # Definindo o ciclo de ressurgimento
-        if self.rect.x > 2*LARGURA:
-            self.rect.x = - 2*LARGURA
-            self.direcao = randint(0,1)
+        if self.__rect.x > 2*LARGURA:
+            self.__rect.x = - 2*LARGURA
+            self.__direcao = randint(0,1)
 
 # Definindo a classe que será o tiro do ovni
 class Laser(pygame.sprite.Sprite):
     def __init__(self, alien):
         pygame.sprite.Sprite.__init__(self)
         # Adicionando imagem
-        self.image = spr.img_laser
+        self.__image = spr.img_laser
         # Adicionando qual será o objeto que disparará o tiro
-        self.alien = alien
+        self.__alien = alien
 
         # Adiconando as posições do tiro, a partir do alien
-        self.rect = self.image.get_rect()
-        self.rect.center = (self.alien.rect.center[0], 2*self.alien.rect.center[1])
-    
+        self.__rect = self.__image.get_rect()
+        self.__rect.center = (self.__alien.rect.center[0], self.__alien.rect.center[1] + 20)
     
     def move(self):
         # O laser será acionando se o alien estiver acima da tela
-        if self.alien.direcao == 0:
-            self.rect.y += 2
+        if self.__alien.direcao == 0:
+            self.__rect.y += 2
         else:
             pass
 
     def update(self):
         # Atualizando as imagens e movimento
         self.move()
+
+    @property
+    def rect(self):
+        return self.__rect
+    
+    @property
+    def image(self):
+        return self.__image
 
     
