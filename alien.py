@@ -1,7 +1,6 @@
 import pygame
-from screens import LARGURA, ALTURA
+from screens import LARGURA
 import sprites as spr
-from pygame.locals import QUIT
 from random import randint
 from sounds import ufo_sound
 
@@ -70,17 +69,21 @@ class Laser(pygame.sprite.Sprite):
         self.image = spr.img_laser
         # Adicionando qual será o objeto que disparará o tiro
         self.alien = alien
-        
+
+        # Adiconando as posições do tiro, a partir do alien
         self.rect = self.image.get_rect()
         self.rect.center = (self.alien.rect.center[0], 2*self.alien.rect.center[1])
     
+    
     def move(self):
+        # O laser será acionando se o alien estiver acima da tela
         if self.alien.direcao == 0:
             self.rect.y += 2
         else:
             pass
 
     def update(self):
+        # Atualizando as imagens e movimento
         self.move()
 
     
