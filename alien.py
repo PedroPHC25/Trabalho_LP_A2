@@ -3,6 +3,7 @@ from screens import LARGURA, ALTURA
 import sprites as spr
 from pygame.locals import QUIT, KEYDOWN
 from random import randint
+from sounds import ufo_sound
 
 class Alien(pygame.sprite.Sprite):
     def __init__(self):
@@ -32,6 +33,9 @@ class Alien(pygame.sprite.Sprite):
         else:
             self.atirar = False
 
+        if self.rect.x == -100:
+            ufo_sound.play()
+
     def move(self):
         if self.direcao == 0:
             ufo.rect.y = 10
@@ -42,7 +46,7 @@ class Alien(pygame.sprite.Sprite):
             ufo.rect.x += 1        
 
         if ufo.rect.x > 2*LARGURA:
-            ufo.rect.x = - 5*LARGURA
+            ufo.rect.x = - 3*LARGURA
             self.direcao = randint(0,1)
 
 class Laser(pygame.sprite.Sprite):

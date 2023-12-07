@@ -14,3 +14,7 @@ music = pygame.mixer.music.load("sounds/Interstellar Official Soundtrack _ First
 # Carregando o som do tiro do player
 player_shot_sound = pygame.mixer.Sound("sounds/laser5.wav")
 player_shot_sound.set_volume(0.2)
+
+# Carregando o efeito sonoro do ovni
+ufo_sound = pygame.mixer.Sound("sounds/alien_voice.mp3")
+ufo_sound.set_volume(0.2)
