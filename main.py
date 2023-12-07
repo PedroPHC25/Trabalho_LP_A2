@@ -1,11 +1,11 @@
 import pygame
 from pygame.locals import *
 from sys import exit
-from screens import screen, LARGURA, ALTURA, font20, font30, formated_text_game_over_1, formated_text_game_over_2
+from screens import screen, LARGURA, ALTURA, font20, font30, formated_text_game_over_1, formated_text_game_over_2, formated_text_start_1, formated_text_start_2
 from player import Ship, Shot
 from sprites import imgs_space, list_images_big_meteor, list_images_fireball
 from SpaceObjects import BigMeteor, Comet
-from sounds import player_shot_sound, music
+from sounds import player_shot_sound, destruction_sound, gameover_sound
 from alien import Ufo, Laser
 
 # Inicializando o pygame
@@ -62,7 +62,7 @@ def game_init():
     # Tempo de jogo
     game_time = 0
     # Variável para checar se o player perdeu
-    game_screen = "game"
+    game_screen = "start"
 
 game_init()
 
@@ -84,6 +84,8 @@ while True:
                 player_shot_sound.play()
             if event.key == K_r and game_screen == "gameover":
                 game_init()
+            if game_screen == "start":
+                game_screen = "game"
 
     # Acionando o laser quando o ovni está na tela
     if ufo.atirar == True and alien_shot_cooldown > 150:
@@ -110,11 +112,14 @@ while True:
     if pygame.key.get_pressed()[K_s] and pygame.key.get_pressed()[K_d]:
         ship.move("downright")
 
-    # Checando se cada tiro já saiu da tela e, se sim, retirando-o do grupo de sprites
+    # Checando se cada tiro já saiu da tela e, se sim, retirando-o dos grupos de sprites
     # para parar de renderizá-lo
     for each_sprite in all_sprites:
-        if isinstance(each_sprite, Shot) and each_sprite.y < -50:
-            all_sprites.remove(each_sprite)   
+        if isinstance(each_sprite, Shot) and each_sprite.y < -10:
+            all_sprites.remove(each_sprite)
+    for each_sprite in all_player_shots:
+        if each_sprite.y < -10:
+            all_sprites.remove(each_sprite)
     
     # Variável das colisões dos inimigos com a nave
     enemy_collisions = pygame.sprite.spritecollide(ship, all_enemies, True, pygame.sprite.collide_mask)
@@ -143,6 +148,7 @@ while True:
         all_sprites.add(fireball)
         all_enemies.add(fireball)
         game_time += 200
+        destruction_sound.play()
 
     # Adicionando uma colisão com o próprio ovni
     alien_collision = pygame.sprite.spritecollide(ship, alien_group, False)
@@ -152,14 +158,20 @@ while True:
     if alien_collision_cooldown > 60 and alien_collision:
         ship.take_damage()
         alien_collision_cooldown = 0
+
+    # Dá um de vida à nave a cada 100 pontos
+    if game_time > 0 and game_time % 1000 == 0:
+        ship.increase_health()
         
     # Caso a vida chegue a 0, tela de game over
     if ship.health <= 0:
         game_screen = "gameover"
+        gameover_sound.play()
 
     # Texto da pontuação
     text_time = f"{game_time//10}"
 
+    # Configuração das telas
     if game_screen == "game":
         # Atualiando as variáveis
         player_shots_cooldown += 1
@@ -170,7 +182,7 @@ while True:
         all_sprites.update()
         # Texto do tempo de jogo
         formated_text_time = font20.render(text_time, False, "white")
-        screen.blit(formated_text_time, (500, 50))
+        screen.blit(formated_text_time, (500, 20))
         # Barra de vida
         pygame.draw.rect(screen, "white", (30, 30, 250, 10))
         pygame.draw.rect(screen, "red", (30, 30, ship.health*50, 10))
@@ -181,5 +193,10 @@ while True:
         screen.blit(formated_text_game_over_1, (LARGURA/2 - formated_text_game_over_1.get_width()/2, 200))
         screen.blit(formated_text_time, (LARGURA/2 - formated_text_time.get_width()/2, 285))
         screen.blit(formated_text_game_over_2, (LARGURA/2 - formated_text_game_over_2.get_width()/2, 350))
+    elif game_screen == "start":
+        all_stars.draw(screen)
+        all_stars.update()
+        screen.blit(formated_text_start_1, (LARGURA/2 - formated_text_start_1.get_width()/2, 200))
+        screen.blit(formated_text_start_2, (LARGURA/2 - formated_text_start_2.get_width()/2, 350))
 
     pygame.display.flip()

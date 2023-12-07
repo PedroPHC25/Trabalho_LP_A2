@@ -18,3 +18,11 @@ player_shot_sound.set_volume(0.2)
 # Carregando o efeito sonoro do ovni
 ufo_sound = pygame.mixer.Sound("sounds/alien_voice.mp3")
 ufo_sound.set_volume(0.2)
+
+# Carregando o som da destruição dos asteroides e cometas
+destruction_sound = pygame.mixer.Sound("sounds/explosion_6.wav")
+destruction_sound.set_volume(0.5)
+
+# Carregando o som da destruição da nave
+gameover_sound = pygame.mixer.Sound("sounds/explosion1.mp3")
+gameover_sound.set_volume(0.1)
