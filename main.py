@@ -5,7 +5,7 @@ from screens import screen, LARGURA, ALTURA, font20, font30, formated_text_game_
 from player import Ship, Shot
 from sprites import imgs_space, list_images_big_meteor, list_images_fireball
 from SpaceObjects import BigMeteor, Comet
-from sounds import player_shot_sound, music
+from sounds import player_shot_sound, destruction_sound, gameover_sound
 from alien import Ufo, Laser
 
 # Inicializando o pygame
@@ -112,11 +112,14 @@ while True:
     if pygame.key.get_pressed()[K_s] and pygame.key.get_pressed()[K_d]:
         ship.move("downright")
 
-    # Checando se cada tiro já saiu da tela e, se sim, retirando-o do grupo de sprites
+    # Checando se cada tiro já saiu da tela e, se sim, retirando-o dos grupos de sprites
     # para parar de renderizá-lo
     for each_sprite in all_sprites:
-        if isinstance(each_sprite, Shot) and each_sprite.y < -50:
-            all_sprites.remove(each_sprite)   
+        if isinstance(each_sprite, Shot) and each_sprite.y < -10:
+            all_sprites.remove(each_sprite)
+    for each_sprite in all_player_shots:
+        if each_sprite.y < -10:
+            all_sprites.remove(each_sprite)
     
     # Variável das colisões dos inimigos com a nave
     enemy_collisions = pygame.sprite.spritecollide(ship, all_enemies, True, pygame.sprite.collide_mask)
@@ -145,6 +148,7 @@ while True:
         all_sprites.add(fireball)
         all_enemies.add(fireball)
         game_time += 200
+        destruction_sound.play()
 
     # Adicionando uma colisão com o próprio ovni
     alien_collision = pygame.sprite.spritecollide(ship, alien_group, False)
@@ -162,6 +166,7 @@ while True:
     # Caso a vida chegue a 0, tela de game over
     if ship.health <= 0:
         game_screen = "gameover"
+        gameover_sound.play()
 
     # Texto da pontuação
     text_time = f"{game_time//10}"
@@ -177,7 +182,7 @@ while True:
         all_sprites.update()
         # Texto do tempo de jogo
         formated_text_time = font20.render(text_time, False, "white")
-        screen.blit(formated_text_time, (500, 50))
+        screen.blit(formated_text_time, (500, 20))
         # Barra de vida
         pygame.draw.rect(screen, "white", (30, 30, 250, 10))
         pygame.draw.rect(screen, "red", (30, 30, ship.health*50, 10))
