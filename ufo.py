@@ -12,12 +12,13 @@ from sounds import ufo_sound
 class Ufo(pygame.sprite.Sprite):
     """
     Classe Ufo, nave que passa aleatoriamente pela tela e aciona lasers
+
     :ivar __image_ufo: Lista de imagens para criar a rotação
     :ivar __index_lista: Variável para alternar entre as imagens da lista
     :ivar __image: imagem atual da tela
     :ivar __rect: Retângulo ao redor da imagem
     :ivar __direcao: Variável que define se o objeto está acima ou no meio da tela (gerada aleatoriamente)
-    :ivar __atirar: Variável para armazenar se o ovni está na tela e pode acionar o laser
+    :ivar __atirar: Variável para armazenar se o objeto pode acionar o laser
     """
     def __init__(self):
         """
@@ -27,7 +28,7 @@ class Ufo(pygame.sprite.Sprite):
         # Adicionando a imagem 
         self.__image_ufo = spr.list_images_ufo
 
-        # Uma variável para alterna entre as imagens 
+        # Uma variável para alternar entre as imagens 
         self.__index_lista = 0
         self.__image = self.image_ufo[self.index_lista]
 
@@ -37,7 +38,9 @@ class Ufo(pygame.sprite.Sprite):
         self.rect.x = - LARGURA
         self.rect.y = 50
         
+        # Sorteando a posição y
         self.__direcao = randint(0,1)
+
         self.__atirar = 0
 
     # Prpriedades do objeto
@@ -50,6 +53,9 @@ class Ufo(pygame.sprite.Sprite):
     
     @property
     def rect(self):
+        """
+        Propriedade do atributo rect
+        """
         return self.__rect
     
     @property
@@ -84,7 +90,7 @@ class Ufo(pygame.sprite.Sprite):
     @atirar.setter
     def atirar(self, new_atirar):
         """
-        Setter do atributo atirar
+        Setter para o atributo atirar
 
         :param new_atirar: novo estado
         :type new_atirar: int
@@ -97,14 +103,14 @@ class Ufo(pygame.sprite.Sprite):
         Setter do atributo index_lista
 
         :param new_index: novo index para lista de imagens
-        :type new_index: int
+        :type new_index: float
         """
         self.__index_lista = new_index
 
     @image.setter
     def image(self, new_image):
         """
-        Setter do atributo image
+        Setter para o atributo image
 
         :param new_image: nova imagem
         :type new_image: pygame.surface.Surface
@@ -128,7 +134,7 @@ class Ufo(pygame.sprite.Sprite):
         # Movimentação pelo eixo x
         self.rect.x += 1
 
-        # Definindo o surgimento abaixo ou acima da tela
+        # Definindo a posição y
         if self.direcao == 0:
             self.rect.y = 50
 
@@ -137,7 +143,8 @@ class Ufo(pygame.sprite.Sprite):
 
         # Definindo o ciclo de ressurgimento
         if self.rect.x > 2*LARGURA:
-            self.rect.x = - 2*LARGURA
+            self.rect.x = - LARGURA
+            # Sorteando a posição do y
             self.direcao = randint(0,1)
 
     def update(self):
@@ -175,6 +182,7 @@ class Laser(pygame.sprite.Sprite):
     def __init__(self, alien):
         """
         Inicializador da classe
+
         :param alien: Objeto que dispara o laser
         :type alien: ufo.Ufo
         """
