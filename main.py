@@ -41,14 +41,14 @@ def game_init():
     alien_collision_cooldown = 0
     # Lista com todos os tiros
     shots = []
-    # Criando os meteoros grandes 
+    # Criando os meteoros grandes e adicionando-o ao grupo de todos os sprites e de inimigos
     y = -50
     for i in range(3):
         big_meteor= BigMeteor(y, list_images_big_meteor)
         all_sprites.add(big_meteor)
         all_enemies.add(big_meteor)
         y = y - 700
-    # Criando o cometa 
+    # Criando o cometa e adicionando-o ao grupo de todos os sprites e de inimigos
     y = -50
     for i in range(2):
         fireball = Comet(y, list_images_fireball)
@@ -91,7 +91,7 @@ while True:
             if game_screen == "start":
                 game_screen = "game"
 
-    # Acionando o laser quando o ovni está na tela e a o ovni esta acima da tela
+    # Acionando o laser quando o ovni está na tela e o ovni esta acima da tela
     if ufo.atirar == True and alien_shot_cooldown > 150 and ufo.direcao == 0:
         laser_shot = Laser(ufo)
         all_sprites.add(laser_shot)
