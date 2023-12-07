@@ -33,8 +33,6 @@ class SpaceObject(ABC, pygame.sprite.Sprite):
         # Posição inicial do objeto, aleatória no eixo x
         self.x = randrange(50, 550, 10)
         self.y = y
-        self.rect = self.image.get_rect()
-        self.rect.center = (self.x, self.y) 
         # Imagem inicial que define o sprite e altera com o tempo
         self.atual= 0
         self.list_images = list_images
@@ -42,6 +40,8 @@ class SpaceObject(ABC, pygame.sprite.Sprite):
         # Velocidade do objeto
         self.x_speed = 3 
         self.y_speed = 3
+        self.rect = self.image.get_rect()
+        self.rect.center = (self.x, self.y) 
 
     # Método abstrato que define a movimentação do objeto    
     @abstractmethod
