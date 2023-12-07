@@ -257,8 +257,9 @@ class Shot(pygame.sprite.Sprite):
         Método que movimenta o tiro para cima.
         """
         self.y = self.y - self.speed
+        # Destrói o objeto assim que ele sai da tela
         if self.y < 0:
-            del self
+            self.kill()
 
     # Método para atualizar a posição da imagem do tiro
     def update(self):
