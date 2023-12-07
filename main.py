@@ -4,7 +4,7 @@ from sys import exit
 from screens import screen, LARGURA, font20, font30, formated_text_game_over_1, formated_text_game_over_2, formated_text_start_1, formated_text_start_2
 from player import Ship, Shot
 from sprites import imgs_space, list_images_big_meteor, list_images_fireball
-from SpaceObjects import BigMeteor, Comet
+from space_objects import BigMeteor, Comet
 from sounds import player_shot_sound, destruction_sound, gameover_sound
 from alien import Ufo, Laser
 
