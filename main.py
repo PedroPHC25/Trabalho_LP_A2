@@ -5,7 +5,7 @@ import screens as scr
 from player import Ship, Shot
 from sprites import imgs_space, list_images_big_meteor, list_images_fireball
 from space_objects import BigMeteor, Comet
-from sounds import player_shot_sound, destruction_sound, gameover_sound
+from sounds import player_shot_sound, destruction_sound, gameover_sound, damage_sound
 from ufo import Ufo, Laser
 from random import randrange
 
@@ -71,11 +71,12 @@ def game_init():
     # Variável para checar se o player perdeu
     # Variável para controlar a reprodução do som de game over para tocar apenas 1 vez
     gameover_sound_played = False
-    # Teclas de controle
-    up_key = K_w
-    down_key = K_s
-    left_key = K_a
-    right_key = K_d
+
+# Teclas de controle
+up_key = K_w
+down_key = K_s
+left_key = K_a
+right_key = K_d
 
 game_init()
 game_screen = "start"
@@ -143,6 +144,7 @@ while True:
     if enemy_collisions:
         # Dá dano na nave
         ship.take_damage()
+        damage_sound.play()
 
     # Variável das colisões dos tiros da nave com os inimigos
     player_shot_collisions = pygame.sprite.groupcollide(all_player_shots, all_enemies, True, True, pygame.sprite.collide_mask)

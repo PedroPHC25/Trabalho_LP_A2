@@ -13,4 +13,7 @@ IMAGENS:
 SONS:
 -- Música: https://youtu.be/HV1CMDhemt0
 -- Tiro do player: https://opengameart.org/content/laser-fire
--- Efeito alien : https://pixabay.com/pt/sound-effects/alien-voice-102709/
+-- Destruição dos asteroides e cometas: https://opengameart.org/content/boom-pack-2
+-- Dano na nave: https://opengameart.org/content/9-explosion-sounds
+-- Game over: https://opengameart.org/content/wgs-sound-fx-explosion-1
+-- Efeito alien: https://pixabay.com/pt/sound-effects/alien-voice-102709/
