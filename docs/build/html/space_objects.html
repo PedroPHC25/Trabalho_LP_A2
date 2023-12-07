@@ -196,8 +196,8 @@
           <section id="arquivo-space-objects">
 <h1>Arquivo <cite>space_objects</cite><a class="headerlink" href="#arquivo-space-objects" title="Permalink to this heading">#</a></h1>
 <dl class="py class">
-<dt class="sig sig-object py" id="SpaceObjects.SpaceObject">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SpaceObjects.</span></span><span class="sig-name descname"><span class="pre">SpaceObject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_images</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SpaceObjects.SpaceObject" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="space_objects.SpaceObject">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">space_objects.</span></span><span class="sig-name descname"><span class="pre">SpaceObject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_images</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#space_objects.SpaceObject" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Sprite</span></code></p>
 <p>Classe de objeto espacial, que causa dano na nave.</p>
 <dl class="field-list simple">
@@ -213,8 +213,8 @@
 </dd>
 </dl>
 <dl class="py method">
-<dt class="sig sig-object py" id="SpaceObjects.SpaceObject.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_images</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SpaceObjects.SpaceObject.__init__" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="space_objects.SpaceObject.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_images</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#space_objects.SpaceObject.__init__" title="Permalink to this definition">#</a></dt>
 <dd><p>Construtor da classe SpaceObject.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -226,55 +226,108 @@
 </dl>
 </dd></dl>
 
+<dl class="py property">
+<dt class="sig sig-object py" id="space_objects.SpaceObject.list_images">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">list_images</span></span><a class="headerlink" href="#space_objects.SpaceObject.list_images" title="Permalink to this definition">#</a></dt>
+<dd><p>Propriedade do atributo list_images.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="space_objects.SpaceObject.rect">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">rect</span></span><a class="headerlink" href="#space_objects.SpaceObject.rect" title="Permalink to this definition">#</a></dt>
+<dd><p>Propriedade do atributo rect.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="space_objects.SpaceObject.y_speed">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">y_speed</span></span><a class="headerlink" href="#space_objects.SpaceObject.y_speed" title="Permalink to this definition">#</a></dt>
+<dd><p>Propriedade do atributo y_speed.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="space_objects.SpaceObject.atual">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">atual</span></span><a class="headerlink" href="#space_objects.SpaceObject.atual" title="Permalink to this definition">#</a></dt>
+<dd><p>Propriedade do atributo atual.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="space_objects.SpaceObject.image">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">image</span></span><a class="headerlink" href="#space_objects.SpaceObject.image" title="Permalink to this definition">#</a></dt>
+<dd><p>Propriedade do atributo image.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="space_objects.SpaceObject.x">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">x</span></span><a class="headerlink" href="#space_objects.SpaceObject.x" title="Permalink to this definition">#</a></dt>
+<dd><p>Propriedade do atributo x.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="space_objects.SpaceObject.y">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">y</span></span><a class="headerlink" href="#space_objects.SpaceObject.y" title="Permalink to this definition">#</a></dt>
+<dd><p>Propriedade do atributo y.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="space_objects.SpaceObject.x_speed">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">x_speed</span></span><a class="headerlink" href="#space_objects.SpaceObject.x_speed" title="Permalink to this definition">#</a></dt>
+<dd><p>Propriedade do atributo x_speed.</p>
+</dd></dl>
+
 <dl class="py method">
-<dt class="sig sig-object py" id="SpaceObjects.SpaceObject._move">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_move</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SpaceObjects.SpaceObject._move" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="space_objects.SpaceObject._move">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_move</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#space_objects.SpaceObject._move" title="Permalink to this definition">#</a></dt>
 <dd><p>Método abstrato que movimenta o objeto espacial de acordo com o seu tipo.
 Será herdado e definido na classe filha.</p>
 </dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="space_objects.SpaceObject._abc_impl">
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#space_objects.SpaceObject._abc_impl" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
-<dt class="sig sig-object py" id="SpaceObjects.SpaceObject.update">
-<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SpaceObjects.SpaceObject.update" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="space_objects.SpaceObject.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#space_objects.SpaceObject.update" title="Permalink to this definition">#</a></dt>
 <dd><p>Atualizador da sprite da classe SpaceObject.</p>
 </dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="SpaceObjects.SpaceObject._abc_impl">
-<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#SpaceObjects.SpaceObject._abc_impl" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="SpaceObjects.BigMeteor">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SpaceObjects.</span></span><span class="sig-name descname"><span class="pre">BigMeteor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_images</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SpaceObjects.BigMeteor" title="Permalink to this definition">#</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#SpaceObjects.SpaceObject" title="SpaceObjects.SpaceObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpaceObject</span></code></a></p>
+<dt class="sig sig-object py" id="space_objects.BigMeteor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">space_objects.</span></span><span class="sig-name descname"><span class="pre">BigMeteor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_images</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#space_objects.BigMeteor" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#space_objects.SpaceObject" title="space_objects.SpaceObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpaceObject</span></code></a></p>
 <p>Classe referente ao  objeto BigMeteor, que herda de SpaceObject.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="space_objects.BigMeteor._abc_impl">
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#space_objects.BigMeteor._abc_impl" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
-<dt class="sig sig-object py" id="SpaceObjects.BigMeteor._move">
-<span class="sig-name descname"><span class="pre">_move</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SpaceObjects.BigMeteor._move" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="space_objects.BigMeteor._move">
+<span class="sig-name descname"><span class="pre">_move</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#space_objects.BigMeteor._move" title="Permalink to this definition">#</a></dt>
 <dd><p>Método que movimenta o objeto espacial.
 Herdado da classe base SpaceObject.</p>
 </dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py" id="SpaceObjects.BigMeteor._abc_impl">
-<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#SpaceObjects.BigMeteor._abc_impl" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
-
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="SpaceObjects.Comet">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SpaceObjects.</span></span><span class="sig-name descname"><span class="pre">Comet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_images</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SpaceObjects.Comet" title="Permalink to this definition">#</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#SpaceObjects.SpaceObject" title="SpaceObjects.SpaceObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpaceObject</span></code></a></p>
+<dt class="sig sig-object py" id="space_objects.Comet">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">space_objects.</span></span><span class="sig-name descname"><span class="pre">Comet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_images</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#space_objects.Comet" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#space_objects.SpaceObject" title="space_objects.SpaceObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpaceObject</span></code></a></p>
 <p>Classe que representa um cometa no jogo, derivada da classe SpaceObject.</p>
 <p>Métodos:
 - _move(): Método responsável por controlar a movimentação do cometa.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="space_objects.Comet._abc_impl">
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#space_objects.Comet._abc_impl" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
-<dt class="sig sig-object py" id="SpaceObjects.Comet._move">
-<span class="sig-name descname"><span class="pre">_move</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SpaceObjects.Comet._move" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="space_objects.Comet._move">
+<span class="sig-name descname"><span class="pre">_move</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#space_objects.Comet._move" title="Permalink to this definition">#</a></dt>
 <dd><p>Redefine o método abstrato _move() da classe pai SpaceObject.</p>
 <p>Regras de movimentação do cometa:
 1. Se a posição y do cometa for maior que ALTURA + 100,</p>
@@ -288,11 +341,6 @@ Herdado da classe base SpaceObject.</p>
 inverte a direção do movimento horizontal multiplicando x_speed por -1.</p></li>
 </ol>
 </dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="SpaceObjects.Comet._abc_impl">
-<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#SpaceObjects.Comet._abc_impl" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
 
 </dd></dl>
 
@@ -346,21 +394,29 @@ inverte a direção do movimento horizontal multiplicando x_speed por -1.</p></l
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">Arquivo <cite>space_objects</cite></a><ul>
-<li><a class="reference internal" href="#SpaceObjects.SpaceObject"><code class="docutils literal notranslate"><span class="pre">SpaceObject</span></code></a><ul>
-<li><a class="reference internal" href="#SpaceObjects.SpaceObject.__init__"><code class="docutils literal notranslate"><span class="pre">SpaceObject.__init__()</span></code></a></li>
-<li><a class="reference internal" href="#SpaceObjects.SpaceObject._move"><code class="docutils literal notranslate"><span class="pre">SpaceObject._move()</span></code></a></li>
-<li><a class="reference internal" href="#SpaceObjects.SpaceObject.update"><code class="docutils literal notranslate"><span class="pre">SpaceObject.update()</span></code></a></li>
-<li><a class="reference internal" href="#SpaceObjects.SpaceObject._abc_impl"><code class="docutils literal notranslate"><span class="pre">SpaceObject._abc_impl</span></code></a></li>
+<li><a class="reference internal" href="#space_objects.SpaceObject"><code class="docutils literal notranslate"><span class="pre">SpaceObject</span></code></a><ul>
+<li><a class="reference internal" href="#space_objects.SpaceObject.__init__"><code class="docutils literal notranslate"><span class="pre">SpaceObject.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#space_objects.SpaceObject.list_images"><code class="docutils literal notranslate"><span class="pre">SpaceObject.list_images</span></code></a></li>
+<li><a class="reference internal" href="#space_objects.SpaceObject.rect"><code class="docutils literal notranslate"><span class="pre">SpaceObject.rect</span></code></a></li>
+<li><a class="reference internal" href="#space_objects.SpaceObject.y_speed"><code class="docutils literal notranslate"><span class="pre">SpaceObject.y_speed</span></code></a></li>
+<li><a class="reference internal" href="#space_objects.SpaceObject.atual"><code class="docutils literal notranslate"><span class="pre">SpaceObject.atual</span></code></a></li>
+<li><a class="reference internal" href="#space_objects.SpaceObject.image"><code class="docutils literal notranslate"><span class="pre">SpaceObject.image</span></code></a></li>
+<li><a class="reference internal" href="#space_objects.SpaceObject.x"><code class="docutils literal notranslate"><span class="pre">SpaceObject.x</span></code></a></li>
+<li><a class="reference internal" href="#space_objects.SpaceObject.y"><code class="docutils literal notranslate"><span class="pre">SpaceObject.y</span></code></a></li>
+<li><a class="reference internal" href="#space_objects.SpaceObject.x_speed"><code class="docutils literal notranslate"><span class="pre">SpaceObject.x_speed</span></code></a></li>
+<li><a class="reference internal" href="#space_objects.SpaceObject._move"><code class="docutils literal notranslate"><span class="pre">SpaceObject._move()</span></code></a></li>
+<li><a class="reference internal" href="#space_objects.SpaceObject._abc_impl"><code class="docutils literal notranslate"><span class="pre">SpaceObject._abc_impl</span></code></a></li>
+<li><a class="reference internal" href="#space_objects.SpaceObject.update"><code class="docutils literal notranslate"><span class="pre">SpaceObject.update()</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#SpaceObjects.BigMeteor"><code class="docutils literal notranslate"><span class="pre">BigMeteor</span></code></a><ul>
-<li><a class="reference internal" href="#SpaceObjects.BigMeteor._move"><code class="docutils literal notranslate"><span class="pre">BigMeteor._move()</span></code></a></li>
-<li><a class="reference internal" href="#SpaceObjects.BigMeteor._abc_impl"><code class="docutils literal notranslate"><span class="pre">BigMeteor._abc_impl</span></code></a></li>
+<li><a class="reference internal" href="#space_objects.BigMeteor"><code class="docutils literal notranslate"><span class="pre">BigMeteor</span></code></a><ul>
+<li><a class="reference internal" href="#space_objects.BigMeteor._abc_impl"><code class="docutils literal notranslate"><span class="pre">BigMeteor._abc_impl</span></code></a></li>
+<li><a class="reference internal" href="#space_objects.BigMeteor._move"><code class="docutils literal notranslate"><span class="pre">BigMeteor._move()</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#SpaceObjects.Comet"><code class="docutils literal notranslate"><span class="pre">Comet</span></code></a><ul>
-<li><a class="reference internal" href="#SpaceObjects.Comet._move"><code class="docutils literal notranslate"><span class="pre">Comet._move()</span></code></a></li>
-<li><a class="reference internal" href="#SpaceObjects.Comet._abc_impl"><code class="docutils literal notranslate"><span class="pre">Comet._abc_impl</span></code></a></li>
+<li><a class="reference internal" href="#space_objects.Comet"><code class="docutils literal notranslate"><span class="pre">Comet</span></code></a><ul>
+<li><a class="reference internal" href="#space_objects.Comet._abc_impl"><code class="docutils literal notranslate"><span class="pre">Comet._abc_impl</span></code></a></li>
+<li><a class="reference internal" href="#space_objects.Comet._move"><code class="docutils literal notranslate"><span class="pre">Comet._move()</span></code></a></li>
 </ul>
 </li>
 </ul>

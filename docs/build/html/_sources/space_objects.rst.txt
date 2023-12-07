@@ -1,21 +1,21 @@
 Arquivo `space_objects`
 =======================
 
-.. autoclass:: SpaceObjects.SpaceObject
+.. autoclass:: space_objects.SpaceObject
     :members:
     :undoc-members:
     :show-inheritance:
     :private-members:
     :special-members: __init__
 
-.. autoclass:: SpaceObjects.BigMeteor
+.. autoclass:: space_objects.BigMeteor
     :members:
     :undoc-members:
     :show-inheritance:
     :private-members:
     :special-members: __init__
 
-.. autoclass:: SpaceObjects.Comet
+.. autoclass:: space_objects.Comet
     :members:
     :undoc-members:
     :show-inheritance:
