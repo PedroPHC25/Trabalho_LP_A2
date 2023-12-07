@@ -46,54 +46,108 @@ class SpaceObject(ABC, pygame.sprite.Sprite):
 
     @property
     def atual(self):
+        """
+        Propriedade do atributo atual.
+        """
         return self.__atual
     
     @property
     def image(self):
+        """
+        Propriedade do atributo image.
+        """
         return self.__image
     
     @property
     def list_images(self):
+        """
+        Propriedade do atributo list_images.
+        """
         return self.__list_images
     
     @property
     def x(self):
+        """
+        Propriedade do atributo x.
+        """
         return self.__x
     
     @property
     def y(self):
+        """
+        Propriedade do atributo y.
+        """
         return self.__y
     
     @property
     def rect(self):
+        """
+        Propriedade do atributo rect.
+        """
         return self.__rect
     
     @property
     def x_speed(self):
+        """
+        Propriedade do atributo x_speed.
+        """
         return self.__x_speed
     
     @property
     def y_speed(self):
+        """
+        Propriedade do atributo y_speed.
+        """
         return self.__y_speed
     
     @atual.setter
     def atual(self, new_atual):
+        """
+        Setter do atributo atual.
+
+        :param new_atual: tempo atual.
+        :type new_atual: int.
+        """
         self.__atual = new_atual
 
     @image.setter
     def image(self, new_image):
+        """
+        Setter do atributo image.
+
+        :param new_image: nova imagem alterada.
+        :type new_atual: int.
+        """
         self.__image = new_image
 
     @x.setter
     def x(self, new_x):
+        """
+        Setter do atributo x.
+
+        :param new_x: nova coordenada eixo x.
+        :type new_x: int.
+        """
         self.__x = new_x
 
     @y.setter
     def y(self, new_y):
+        """
+        Setter do atributo y.
+
+        :param new_y: nova coordenada eixo y.
+        :type new_y: int.
+        """
         self.__y = new_y
 
     @x_speed.setter
     def x_speed(self, new_x_speed):
+        """
+        Setter do atributo x_speed.
+
+        :param new_x_speed: nova velocidade no eixo x.
+        :type new_x_speed: int.
+        """
         self.__x_speed = new_x_speed
 
     # Método abstrato que define a movimentação do objeto    
