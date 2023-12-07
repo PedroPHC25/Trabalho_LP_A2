@@ -33,4 +33,4 @@ formated_text_start_1 = font60.render(text_start_1, False, "white")
 text_start_2 = "Aperte qualquer tecla para começar"
 formated_text_start_2 = font20.render(text_start_2, False, "white")
 
-print(pygame.font.get_fonts())
+# print(pygame.font.get_fonts())
