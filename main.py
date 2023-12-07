@@ -91,8 +91,8 @@ while True:
             if game_screen == "start":
                 game_screen = "game"
 
-    # Acionando o laser quando o ovni está na tela
-    if ufo.atirar == True and alien_shot_cooldown > 150:
+    # Acionando o laser quando o ovni está na tela e a o ovni esta acima da tela
+    if ufo.atirar == True and alien_shot_cooldown > 150 and ufo.direcao == 0:
         laser_shot = Laser(ufo)
         all_sprites.add(laser_shot)
         all_enemies.add(laser_shot)
