@@ -152,7 +152,18 @@ class Ship(pygame.sprite.Sprite):
 
     # Método para fazer a nave tomar dano
     def take_damage(self):
+        """
+        Método para dar dano na nave.
+        """
         self.health -= 1
+
+    # Método para fazer a nave tomar dano
+    def increase_health(self):
+        """
+        Método para dar vida para a nave.
+        """
+        if self.health < 5:
+            self.health += 1
 
     # Método padrão para atualizar as coordenadas da imagem
     def update(self):

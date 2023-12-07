@@ -19,9 +19,16 @@ pygame.display.set_caption("Space War")
 font20 = pygame.font.SysFont("arialblack", 20, True, False)
 font40 = pygame.font.SysFont("arialblack", 40, True, False)
 font30 = pygame.font.SysFont("arialblack", 30, True, False)
+font60 = pygame.font.SysFont("arialblack", 60, True, False)
 
 # Textos da tela de game over
 text_game_over_1 = "Fim de jogo"
 formated_text_game_over_1 = font40.render(text_game_over_1, False, "white")
 text_game_over_2 = "Aperte R para reiniciar"
 formated_text_game_over_2 = font30.render(text_game_over_2, False, "white")
+
+# Textos da tela de start
+text_start_1 = "Space War"
+formated_text_start_1 = font60.render(text_start_1, False, "white")
+text_start_2 = "Aperte qualquer tecla para começar"
+formated_text_start_2 = font20.render(text_start_2, False, "white")
