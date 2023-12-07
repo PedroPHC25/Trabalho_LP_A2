@@ -3,6 +3,7 @@ from screens import LARGURA, ALTURA
 import sprites as spr
 from pygame.locals import QUIT, KEYDOWN
 from random import randint
+from sounds import ufo_sound
 
 class Alien(pygame.sprite.Sprite):
     def __init__(self):
@@ -14,10 +15,10 @@ class Alien(pygame.sprite.Sprite):
 
         self.rect = self.image.get_rect()
 
-        self.rect.x = -20
+        self.rect.x = - LARGURA
         self.rect.y = 10
         
-        self.direcao = 1
+        self.direcao = 0
         self.atirar = False
 
     def update(self):
@@ -27,10 +28,13 @@ class Alien(pygame.sprite.Sprite):
         self.image = self.image_ufo[int(self.index_lista)]
         self.move()
 
-        if self.rect.x > 0 and self.rect.x < LARGURA and self.rect.y > 0 and self.rect.y < ALTURA:
+        if self.rect.x > 10 and self.rect.x < LARGURA:
             self.atirar = True
         else:
             self.atirar = False
+
+        if self.rect.x == -100:
+            ufo_sound.play()
 
     def move(self):
         if self.direcao == 0:
@@ -42,7 +46,7 @@ class Alien(pygame.sprite.Sprite):
             ufo.rect.x += 1        
 
         if ufo.rect.x > 2*LARGURA:
-            ufo.rect.x = -80
+            ufo.rect.x = - 3*LARGURA
             self.direcao = randint(0,1)
 
 class Laser(pygame.sprite.Sprite):
@@ -81,16 +85,14 @@ while True:
         if event.type == QUIT:
             pygame.quit()
             exit()   
-        if event.type == KEYDOWN:
-                print("aqui1")
+        # if event.type == KEYDOWN:
             # Criar um novo tiro e adicioná-lo ao grupo de sprites ao apertar a barra de espaço
-                if ufo.atirar == True and shots_cooldown > 50:
-                    print("aqui2")
-            # Criar um novo tiro e adicioná-lo ao grupo de sprites ao apertar a barra de espaço:
-                    new_shot = Laser(ufo)
-                    todas_sprites.add(new_shot)
-                    all_player_shots.add(new_shot) 
-                    shots_cooldown = 0    
+    if ufo.atirar == True and shots_cooldown > 100:
+        # Criar um novo tiro e adicioná-lo ao grupo de sprites ao apertar a barra de espaço:
+        new_shot = Laser(ufo)
+        todas_sprites.add(new_shot)
+        all_player_shots.add(new_shot) 
+        shots_cooldown = 0    
 
     todas_sprites.draw(tela)
     todas_sprites.update()
