@@ -1,5 +1,5 @@
 """
-Módulo contendo a definição das classes SpaceObject, que é pai das classes BigMeteor e --------, que é responsável pelos objestos espaciais 
+Módulo contendo a definição das classes SpaceObject, que é pai das classes BigMeteor e comet, que é responsável pelos objestos espaciais 
 que causam dano na nave, como meteoros e cometas.
 """
 import pygame
@@ -9,25 +9,55 @@ from screens import ALTURA, LARGURA
 
 # Classe abstrata que define o que todo objeto espacial deve ter
 class SpaceObject(ABC, pygame.sprite.Sprite):
+    """
+    Classe de objeto espacial, que causa dano na nave.
+
+    :ivar __image: Imagem do objeto.
+    :ivar __rect: Retângulo utilizado para orientar a imagem.
+    :ivar __x: Coordenada x do objeto.
+    :ivar __y: Coordenada y do objeto.
+    :ivar __speed: Velocidade do objeto.
+    :ivar __atual: Estado atual que definea mudança dos sprites e começa em zero.
+    """
     #Inicializador do objeto e definições dos sprites
     def __init__(self, y, list_images):
+        """
+        Construtor da classe SpaceObject.
+
+        :param y: Posição inicial do objeto na tela no eixo y.
+        :type y: int
+        :param list_images: Lista contendo as imagens dos sprites do objeto espacial.
+        :type list_images: list
+        """
         pygame.sprite.Sprite.__init__(self)
+        # Posição inicial do objeto, aleatória no eixo x
         self.x = randrange(50, 550, 10)
         self.y = y
+        # Imagem inicial que define o sprite e altera com o tempo
         self.atual= 0
         self.list_images = list_images
         self.image = list_images[self.atual]
-        self.rect = self.image.get_rect()
-        self.rect.center = (self.x, self.y) 
+        # Velocidade do objeto
         self.x_speed = 3 
         self.y_speed = 3
+        self.rect = self.image.get_rect()
+        self.rect.center = (self.x, self.y) 
 
     # Método abstrato que define a movimentação do objeto    
     @abstractmethod
-    def _move(self): ...
+    def _move(self):
+        """
+        Método abstrato que movimenta o objeto espacial de acordo com o seu tipo.
+        Será herdado e definido na classe filha.
+        """
+        ...
     
     # Método que atualiza a posição do objeto e define a troca de imagem do sprite
     def update(self):
+        """
+        Atualizador da sprite da classe SpaceObject.
+        """
+        # Muda o estado de acordo com o tempo, para a atualização da sprite.
         self.atual = self.atual + 0.3
         if self.atual >= len(self.list_images):
             self.atual = 0
@@ -36,18 +66,36 @@ class SpaceObject(ABC, pygame.sprite.Sprite):
         self.rect.center = (self.x, self.y)
         self._move()
 
+
+
+
 # Classe que herda de SpaceObject e cria o objeto meteoro grande
 class BigMeteor(SpaceObject):
+    """
+    Classe referente ao  objeto BigMeteor, que herda de SpaceObject.
+
+    """
     # Redefinição do método abstrato que controla a movimentação
     def _move(self):
+        """
+        Método que movimenta o objeto espacial.
+        Herdado da classe base SpaceObject.
+        """
+        # Condicional que define o resurgimento da sprite no game loop, de maneira aleatória. 
         if self.y > ALTURA + 100:
             self.y = randrange(-600, -200)
             self.x = randrange(50, 550)
+
+        # Alteração da posição do meteoro de acordo com a velocidade herdada de SpaceObject.
         self.x += self.x_speed 
         self.y += self.y_speed
 
+        # Condicional que define o a colisão do meteoro com a tela lateral e rebote.
         if self.x > LARGURA-(20) or self.x < (20):
             self.x_speed = self.x_speed * (-1)
+
+
+
 
 # Classe que herda de SpaceObject e cria o objeto cometa 
 class Comet(SpaceObject):
