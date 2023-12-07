@@ -112,15 +112,6 @@ while True:
     if pygame.key.get_pressed()[K_s] and pygame.key.get_pressed()[K_d]:
         ship.move("downright")
 
-    # Checando se cada tiro já saiu da tela e, se sim, retirando-o dos grupos de sprites
-    # para parar de renderizá-lo
-    for each_sprite in all_sprites:
-        if isinstance(each_sprite, Shot) and each_sprite.y < -10:
-            all_sprites.remove(each_sprite)
-    for each_sprite in all_player_shots:
-        if each_sprite.y < -10:
-            all_sprites.remove(each_sprite)
-    
     # Variável das colisões dos inimigos com a nave
     enemy_collisions = pygame.sprite.spritecollide(ship, all_enemies, True, pygame.sprite.collide_mask)
 
