@@ -1,7 +1,9 @@
 import pygame
 from pygame.locals import *
 from sys import exit
-from screens import screen, LARGURA, font20, font30, formated_text_game_over_1, formated_text_game_over_2, formated_text_start_1, formated_text_start_2
+from screens import screen, LARGURA, font20, font30, formated_text_game_over_1
+from screens import formated_text_game_over_2, formated_text_start_1, formated_text_start_2
+from screens import formated_text_start_3, formated_text_start_4
 from player import Ship, Shot
 from sprites import imgs_space, list_images_big_meteor, list_images_fireball
 from space_objects import BigMeteor, Comet
@@ -19,7 +21,7 @@ pygame.mixer.music.play(-1)
 clock = pygame.time.Clock()
 
 def game_init():
-    global all_sprites, all_enemies, all_stars, all_player_shots, player_shots_cooldown, shots, game_time, game_screen, ship, player_shots_cooldown, shots, alien_shot_cooldown, ufo,all_alien_shots, alien_group, alien_collision_cooldown, gameover_sound_played, points, points_multiplier, spawn_cooldown
+    global all_sprites, all_enemies, all_stars, all_player_shots, player_shots_cooldown, shots, game_time, game_screen, ship, player_shots_cooldown, shots, alien_shot_cooldown, ufo,all_alien_shots, alien_group, alien_collision_cooldown, gameover_sound_played, points, points_multiplier, spawn_cooldown, up_key, down_key, left_key, right_key
     # Grupo com todos os objetos que serão exibidos
     all_sprites = pygame.sprite.Group()
     # Grupo com todos os inimigos
@@ -69,6 +71,11 @@ def game_init():
     game_screen = "start"
     # Variável para controlar a reprodução do som de game over para tocar apenas 1 vez
     gameover_sound_played = False
+    # Teclas de controle
+    up_key = K_w
+    down_key = K_s
+    left_key = K_a
+    right_key = K_d
 
 game_init()
 
@@ -91,9 +98,17 @@ while True:
             # Reiniciando o jogo ao apertar R
             if event.key == K_r and game_screen == "gameover":
                 game_init()
-            # Começando o jogo ao apertar qualquer tecla
             if game_screen == "start":
-                game_screen = "game"
+                # Começando o jogo com WASD ao apertar W
+                if event.key == K_w:
+                    game_screen = "game"
+                # Começando o jogo com as setinhas ao apertar a setinha para cima
+                if event.key == K_UP:
+                    up_key = K_UP
+                    down_key = K_DOWN
+                    left_key = K_LEFT
+                    right_key = K_RIGHT
+                    game_screen = "game"
 
     # Acionando o laser quando o ovni está na tela e o ovni esta acima da tela
     if ufo.atirar == True and alien_shot_cooldown > 150 and ufo.direcao == 0:
@@ -103,21 +118,21 @@ while True:
         alien_shot_cooldown = 0
 
     # Movimentação do player por WASD
-    if pygame.key.get_pressed()[K_w] and not pygame.key.get_pressed()[K_a] and not pygame.key.get_pressed()[K_d]:
+    if pygame.key.get_pressed()[up_key] and not pygame.key.get_pressed()[left_key] and not pygame.key.get_pressed()[right_key]:
         ship.move("up")
-    if pygame.key.get_pressed()[K_s] and not pygame.key.get_pressed()[K_a] and not pygame.key.get_pressed()[K_d]:
+    if pygame.key.get_pressed()[down_key] and not pygame.key.get_pressed()[left_key] and not pygame.key.get_pressed()[right_key]:
         ship.move("down")
-    if pygame.key.get_pressed()[K_a] and not pygame.key.get_pressed()[K_w] and not pygame.key.get_pressed()[K_s]:
+    if pygame.key.get_pressed()[left_key] and not pygame.key.get_pressed()[up_key] and not pygame.key.get_pressed()[down_key]:
         ship.move("left")
-    if pygame.key.get_pressed()[K_d] and not pygame.key.get_pressed()[K_w] and not pygame.key.get_pressed()[K_s]:
+    if pygame.key.get_pressed()[right_key] and not pygame.key.get_pressed()[up_key] and not pygame.key.get_pressed()[down_key]:
         ship.move("right")
-    if pygame.key.get_pressed()[K_w] and pygame.key.get_pressed()[K_a]:
+    if pygame.key.get_pressed()[up_key] and pygame.key.get_pressed()[left_key]:
         ship.move("upleft")
-    if pygame.key.get_pressed()[K_w] and pygame.key.get_pressed()[K_d]:
+    if pygame.key.get_pressed()[up_key] and pygame.key.get_pressed()[right_key]:
         ship.move("upright")
-    if pygame.key.get_pressed()[K_s] and pygame.key.get_pressed()[K_a]:
+    if pygame.key.get_pressed()[down_key] and pygame.key.get_pressed()[left_key]:
         ship.move("downleft")
-    if pygame.key.get_pressed()[K_s] and pygame.key.get_pressed()[K_d]:
+    if pygame.key.get_pressed()[down_key] and pygame.key.get_pressed()[right_key]:
         ship.move("downright")
 
     # Variável das colisões dos inimigos com a nave
@@ -206,5 +221,7 @@ while True:
         # Textos da tela de start
         screen.blit(formated_text_start_1, (LARGURA/2 - formated_text_start_1.get_width()/2, 200))
         screen.blit(formated_text_start_2, (LARGURA/2 - formated_text_start_2.get_width()/2, 350))
+        screen.blit(formated_text_start_3, (LARGURA/2 - formated_text_start_3.get_width()/2, 375))
+        screen.blit(formated_text_start_4, (LARGURA/2 - formated_text_start_4.get_width()/2, 400))
 
     pygame.display.flip()

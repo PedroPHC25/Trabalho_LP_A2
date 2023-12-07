@@ -30,7 +30,11 @@ formated_text_game_over_2 = font30.render(text_game_over_2, False, "white")
 # Textos da tela de start
 text_start_1 = "Space War"
 formated_text_start_1 = font60.render(text_start_1, False, "white")
-text_start_2 = "Aperte qualquer tecla para começar"
+text_start_2 = "Aperte W para começar com WASD"
 formated_text_start_2 = font20.render(text_start_2, False, "white")
+text_start_3 = "Aperte seta para cima para começar com as setas"
+formated_text_start_3 = font20.render(text_start_3, False, "white")
+text_start_4 = "Aperte espaço para atirar"
+formated_text_start_4 = font20.render(text_start_4, False, "white")
 
 # print(pygame.font.get_fonts())
