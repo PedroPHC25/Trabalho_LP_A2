@@ -31,17 +31,62 @@ class SpaceObject(ABC, pygame.sprite.Sprite):
         """
         pygame.sprite.Sprite.__init__(self)
         # Posição inicial do objeto, aleatória no eixo x
-        self.x = randrange(50, 550, 10)
-        self.y = y
-        self.rect = self.image.get_rect()
-        self.rect.center = (self.x, self.y) 
+        self.__x = randrange(50, 550, 10)
+        self.__y = y
+        
         # Imagem inicial que define o sprite e altera com o tempo
-        self.atual= 0
-        self.list_images = list_images
-        self.image = list_images[self.atual]
+        self.__atual= 0
+        self.__list_images = list_images
+        self.__image = list_images[self.atual]
+        self.__rect = self.image.get_rect()
+        self.rect.center = (self.x, self.y) 
         # Velocidade do objeto
-        self.x_speed = 3 
-        self.y_speed = 3
+        self.__x_speed = 3 
+        self.__y_speed = 3
+
+    @property
+    def atual(self):
+        return self.__atual
+    
+    @property
+    def image(self):
+        return self.__image
+    
+    @property
+    def list_images(self):
+        return self.__list_images
+    
+    @property
+    def x(self):
+        return self.__x
+    
+    @property
+    def y(self):
+        return self.__y
+    
+    @property
+    def rect(self):
+        return self.__rect
+    
+    @property
+    def x_speed(self):
+        return self.__x_speed
+    
+    @atual.setter
+    def atual(self, new_atual):
+        self.__atual = new_atual
+
+    @image.setter
+    def image(self, new_image):
+        self.__image = new_image
+
+    @image.setter
+    def x(self, new_x):
+        self.__x = new_x
+
+    @image.setter
+    def y(self, new_y):
+        self.__y = new_y
 
     # Método abstrato que define a movimentação do objeto    
     @abstractmethod
