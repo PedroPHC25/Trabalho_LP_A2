@@ -6,7 +6,7 @@ from player import Ship, Shot
 from sprites import imgs_space, list_images_big_meteor, list_images_fireball
 from space_objects import BigMeteor, Comet
 from sounds import player_shot_sound, destruction_sound, gameover_sound
-from alien import Ufo, Laser
+from ufo import Ufo, Laser
 from random import randrange
 
 # Inicializando o pygame
@@ -113,7 +113,7 @@ while True:
                     game_screen = "game"
 
     # Acionando o laser quando o ovni está na tela e o ovni esta acima da tela
-    if ufo.atirar == True and alien_shot_cooldown > 150 and ufo.direcao == 0:
+    if ufo.atirar == True and alien_shot_cooldown > 60 and ufo.direcao == 0:
         laser_shot = Laser(ufo)
         all_sprites.add(laser_shot)
         all_enemies.add(laser_shot)
