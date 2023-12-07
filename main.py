@@ -1,12 +1,13 @@
 import pygame
 from pygame.locals import *
 from sys import exit
-from screens import screen, LARGURA, font20, font30, formated_text_game_over_1, formated_text_game_over_2, formated_text_start_1, formated_text_start_2
+import screens as scr
 from player import Ship, Shot
 from sprites import imgs_space, list_images_big_meteor, list_images_fireball
 from space_objects import BigMeteor, Comet
 from sounds import player_shot_sound, destruction_sound, gameover_sound
 from alien import Ufo, Laser
+from random import randrange
 
 # Inicializando o pygame
 pygame.init()
@@ -18,7 +19,10 @@ pygame.mixer.music.play(-1)
 clock = pygame.time.Clock()
 
 def game_init():
-    global all_sprites, all_enemies, all_stars, all_player_shots, player_shots_cooldown, shots, game_time, game_screen, ship, player_shots_cooldown, shots, alien_shot_cooldown, ufo,all_alien_shots, alien_group, alien_collision_cooldown, gameover_sound_played
+    global all_sprites, all_enemies, all_stars, all_player_shots, player_shots_cooldown, \
+        shots, ship, player_shots_cooldown, shots, alien_shot_cooldown, \
+        ufo, alien_group, alien_collision_cooldown, gameover_sound_played, \
+        points, points_multiplier, spawn_cooldown, up_key, down_key, left_key, right_key
     # Grupo com todos os objetos que serão exibidos
     all_sprites = pygame.sprite.Group()
     # Grupo com todos os inimigos
@@ -41,14 +45,14 @@ def game_init():
     alien_collision_cooldown = 0
     # Lista com todos os tiros
     shots = []
-    # Criando os meteoros grandes 
+    # Criando os meteoros grandes e adicionando-o ao grupo de todos os sprites e de inimigos
     y = -50
     for i in range(3):
         big_meteor= BigMeteor(y, list_images_big_meteor)
         all_sprites.add(big_meteor)
         all_enemies.add(big_meteor)
         y = y - 700
-    # Criando o cometa 
+    # Criando o cometa e adicionando-o ao grupo de todos os sprites e de inimigos
     y = -50
     for i in range(2):
         fireball = Comet(y, list_images_fireball)
@@ -59,18 +63,26 @@ def game_init():
     ufo = Ufo()
     all_sprites.add(ufo)
     alien_group.add(ufo)
-    # Tempo de jogo
-    game_time = 0
+    # Cooldown de spawn dos inimigos
+    spawn_cooldown = 0
+    # Pontuação
+    points = 0
+    points_multiplier = 0
     # Variável para checar se o player perdeu
-    game_screen = "start"
     # Variável para controlar a reprodução do som de game over para tocar apenas 1 vez
     gameover_sound_played = False
+    # Teclas de controle
+    up_key = K_w
+    down_key = K_s
+    left_key = K_a
+    right_key = K_d
 
 game_init()
+game_screen = "start"
 
 while True:
     clock.tick(60)
-    screen.fill("black")
+    scr.screen.fill("black")
 
     for event in pygame.event.get():
         if event.type == QUIT:
@@ -87,11 +99,20 @@ while True:
             # Reiniciando o jogo ao apertar R
             if event.key == K_r and game_screen == "gameover":
                 game_init()
-            # Começando o jogo ao apertar qualquer tecla
-            if game_screen == "start":
                 game_screen = "game"
+            if game_screen == "start":
+                # Começando o jogo com WASD ao apertar W
+                if event.key == K_w:
+                    game_screen = "game"
+                # Começando o jogo com as setinhas ao apertar a setinha para cima
+                if event.key == K_UP:
+                    up_key = K_UP
+                    down_key = K_DOWN
+                    left_key = K_LEFT
+                    right_key = K_RIGHT
+                    game_screen = "game"
 
-    # Acionando o laser quando o ovni está na tela e a o ovni esta acima da tela
+    # Acionando o laser quando o ovni está na tela e o ovni esta acima da tela
     if ufo.atirar == True and alien_shot_cooldown > 150 and ufo.direcao == 0:
         laser_shot = Laser(ufo)
         all_sprites.add(laser_shot)
@@ -99,35 +120,27 @@ while True:
         alien_shot_cooldown = 0
 
     # Movimentação do player por WASD
-    if pygame.key.get_pressed()[K_w] and not pygame.key.get_pressed()[K_a] and not pygame.key.get_pressed()[K_d]:
+    if pygame.key.get_pressed()[up_key] and not pygame.key.get_pressed()[left_key] and not pygame.key.get_pressed()[right_key]:
         ship.move("up")
-    if pygame.key.get_pressed()[K_s] and not pygame.key.get_pressed()[K_a] and not pygame.key.get_pressed()[K_d]:
+    if pygame.key.get_pressed()[down_key] and not pygame.key.get_pressed()[left_key] and not pygame.key.get_pressed()[right_key]:
         ship.move("down")
-    if pygame.key.get_pressed()[K_a] and not pygame.key.get_pressed()[K_w] and not pygame.key.get_pressed()[K_s]:
+    if pygame.key.get_pressed()[left_key] and not pygame.key.get_pressed()[up_key] and not pygame.key.get_pressed()[down_key]:
         ship.move("left")
-    if pygame.key.get_pressed()[K_d] and not pygame.key.get_pressed()[K_w] and not pygame.key.get_pressed()[K_s]:
+    if pygame.key.get_pressed()[right_key] and not pygame.key.get_pressed()[up_key] and not pygame.key.get_pressed()[down_key]:
         ship.move("right")
-    if pygame.key.get_pressed()[K_w] and pygame.key.get_pressed()[K_a]:
+    if pygame.key.get_pressed()[up_key] and pygame.key.get_pressed()[left_key]:
         ship.move("upleft")
-    if pygame.key.get_pressed()[K_w] and pygame.key.get_pressed()[K_d]:
+    if pygame.key.get_pressed()[up_key] and pygame.key.get_pressed()[right_key]:
         ship.move("upright")
-    if pygame.key.get_pressed()[K_s] and pygame.key.get_pressed()[K_a]:
+    if pygame.key.get_pressed()[down_key] and pygame.key.get_pressed()[left_key]:
         ship.move("downleft")
-    if pygame.key.get_pressed()[K_s] and pygame.key.get_pressed()[K_d]:
+    if pygame.key.get_pressed()[down_key] and pygame.key.get_pressed()[right_key]:
         ship.move("downright")
 
     # Variável das colisões dos inimigos com a nave
     enemy_collisions = pygame.sprite.spritecollide(ship, all_enemies, True, pygame.sprite.collide_mask)
 
     if enemy_collisions:
-        # Cria um novo meteoro no lugar do que foi destruído
-        new_meteor = BigMeteor(-500, list_images_big_meteor)
-        all_sprites.add(new_meteor)
-        all_enemies.add(new_meteor)
-        # Cria um novo cometa no lugar
-        fireball = Comet(-500, list_images_fireball)
-        all_sprites.add(fireball)
-        all_enemies.add(fireball)
         # Dá dano na nave
         ship.take_damage()
 
@@ -138,16 +151,8 @@ while True:
     # para aumentar a dificuldade com o tempo
 
     if player_shot_collisions:
-        # Cria um novo meteoro
-        new_meteor = BigMeteor(-500, list_images_big_meteor)
-        all_sprites.add(new_meteor)
-        all_enemies.add(new_meteor)
-        # Cria um novo cometa
-        fireball = Comet(-500, list_images_fireball)
-        all_sprites.add(fireball)
-        all_enemies.add(fireball)
         # Ganha pontos ao destruir o inimigo
-        game_time += 200
+        points += 200
         destruction_sound.play()
 
     # Adicionando uma colisão com o próprio ovni
@@ -160,9 +165,22 @@ while True:
         alien_collision_cooldown = 0
 
     # Dá um de vida à nave a cada 100 pontos
-    if game_time > 0 and game_time % 1000 == 0:
+    if points//1000 > points_multiplier:
         ship.increase_health()
+        points_multiplier += 1
         
+    # Spawna novos inimigos de tempos em tempos
+    if spawn_cooldown > 180:
+        # Novo meteoro
+        new_meteor = BigMeteor(randrange(-800, -200), list_images_big_meteor)
+        all_sprites.add(new_meteor)
+        all_enemies.add(new_meteor)
+        # Novo cometa
+        fireball = Comet(randrange(-800, -200), list_images_fireball)
+        all_sprites.add(fireball)
+        all_enemies.add(fireball)
+        spawn_cooldown = 0
+
     # Caso a vida chegue a 0, tela de game over
     if ship.health <= 0:
         game_screen = "gameover"
@@ -171,38 +189,41 @@ while True:
             gameover_sound_played = True
 
     # Texto da pontuação
-    text_time = f"{game_time//10}"
+    text_time = f"{points//10}"
 
     # Configuração das telas
     if game_screen == "game":
         # Atualiando as variáveis
         player_shots_cooldown += 1
         alien_shot_cooldown += 1
-        game_time += 1
+        points += 1
+        spawn_cooldown += 1
         # Desenhando e atualizando todas as sprites
-        all_sprites.draw(screen)
+        all_sprites.draw(scr.screen)
         all_sprites.update()
         # Texto do tempo de jogo
-        formated_text_time = font20.render(text_time, False, "white")
-        screen.blit(formated_text_time, (500, 20))
+        formated_text_time = scr.font20.render(text_time, False, "white")
+        scr.screen.blit(formated_text_time, (500, 20))
         # Barra de vida
-        pygame.draw.rect(screen, "white", (30, 30, 250, 10))
-        pygame.draw.rect(screen, "red", (30, 30, ship.health*50, 10))
+        pygame.draw.rect(scr.screen, "white", (30, 30, 250, 10))
+        pygame.draw.rect(scr.screen, "red", (30, 30, ship.health*50, 10))
     elif game_screen == "gameover":
         # Continua desenhando as estrelas
-        all_stars.draw(screen)
+        all_stars.draw(scr.screen)
         all_stars.update()
         # Textos da tela de game over
-        formated_text_time = font30.render(text_time, False, "white")
-        screen.blit(formated_text_game_over_1, (LARGURA/2 - formated_text_game_over_1.get_width()/2, 200))
-        screen.blit(formated_text_time, (LARGURA/2 - formated_text_time.get_width()/2, 285))
-        screen.blit(formated_text_game_over_2, (LARGURA/2 - formated_text_game_over_2.get_width()/2, 350))
+        formated_text_time = scr.font30.render(text_time, False, "white")
+        scr.screen.blit(scr.formated_text_game_over_1, (scr.LARGURA/2 - scr.formated_text_game_over_1.get_width()/2, 200))
+        scr.screen.blit(formated_text_time, (scr.LARGURA/2 - formated_text_time.get_width()/2, 285))
+        scr.screen.blit(scr.formated_text_game_over_2, (scr.LARGURA/2 - scr.formated_text_game_over_2.get_width()/2, 350))
     elif game_screen == "start":
         # Continua desenhando as estrelas
-        all_stars.draw(screen)
+        all_stars.draw(scr.screen)
         all_stars.update()
         # Textos da tela de start
-        screen.blit(formated_text_start_1, (LARGURA/2 - formated_text_start_1.get_width()/2, 200))
-        screen.blit(formated_text_start_2, (LARGURA/2 - formated_text_start_2.get_width()/2, 350))
+        scr.screen.blit(scr.formated_text_start_1, (scr.LARGURA/2 - scr.formated_text_start_1.get_width()/2, 200))
+        scr.screen.blit(scr.formated_text_start_2, (scr.LARGURA/2 - scr.formated_text_start_2.get_width()/2, 350))
+        scr.screen.blit(scr.formated_text_start_3, (scr.LARGURA/2 - scr.formated_text_start_3.get_width()/2, 375))
+        scr.screen.blit(scr.formated_text_start_4, (scr.LARGURA/2 - scr.formated_text_start_4.get_width()/2, 400))
 
     pygame.display.flip()

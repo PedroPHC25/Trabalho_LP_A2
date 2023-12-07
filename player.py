@@ -29,7 +29,7 @@ class Ship(pygame.sprite.Sprite):
         self.__rect = self.image.get_rect()
         # Coordenadas da nave
         self.__x = LARGURA/2
-        self.__y = ALTURA/2
+        self.__y = 400
         self.rect.center = (self.x, self.y)
         # Velocidade da nave
         self.__speed = 5
