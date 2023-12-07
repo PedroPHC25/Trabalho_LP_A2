@@ -1,9 +1,7 @@
 import pygame
 from pygame.locals import *
 from sys import exit
-from screens import screen, LARGURA, font20, font30, formated_text_game_over_1
-from screens import formated_text_game_over_2, formated_text_start_1, formated_text_start_2
-from screens import formated_text_start_3, formated_text_start_4
+import screens as scr
 from player import Ship, Shot
 from sprites import imgs_space, list_images_big_meteor, list_images_fireball
 from space_objects import BigMeteor, Comet
@@ -21,7 +19,10 @@ pygame.mixer.music.play(-1)
 clock = pygame.time.Clock()
 
 def game_init():
-    global all_sprites, all_enemies, all_stars, all_player_shots, player_shots_cooldown, shots, game_time, game_screen, ship, player_shots_cooldown, shots, alien_shot_cooldown, ufo,all_alien_shots, alien_group, alien_collision_cooldown, gameover_sound_played, points, points_multiplier, spawn_cooldown, up_key, down_key, left_key, right_key
+    global all_sprites, all_enemies, all_stars, all_player_shots, player_shots_cooldown, \
+        shots, ship, player_shots_cooldown, shots, alien_shot_cooldown, \
+        ufo, alien_group, alien_collision_cooldown, gameover_sound_played, \
+        points, points_multiplier, spawn_cooldown, up_key, down_key, left_key, right_key
     # Grupo com todos os objetos que serão exibidos
     all_sprites = pygame.sprite.Group()
     # Grupo com todos os inimigos
@@ -68,7 +69,6 @@ def game_init():
     points = 0
     points_multiplier = 0
     # Variável para checar se o player perdeu
-    game_screen = "start"
     # Variável para controlar a reprodução do som de game over para tocar apenas 1 vez
     gameover_sound_played = False
     # Teclas de controle
@@ -78,10 +78,11 @@ def game_init():
     right_key = K_d
 
 game_init()
+game_screen = "start"
 
 while True:
     clock.tick(60)
-    screen.fill("black")
+    scr.screen.fill("black")
 
     for event in pygame.event.get():
         if event.type == QUIT:
@@ -98,6 +99,7 @@ while True:
             # Reiniciando o jogo ao apertar R
             if event.key == K_r and game_screen == "gameover":
                 game_init()
+                game_screen = "game"
             if game_screen == "start":
                 # Começando o jogo com WASD ao apertar W
                 if event.key == K_w:
@@ -197,31 +199,31 @@ while True:
         points += 1
         spawn_cooldown += 1
         # Desenhando e atualizando todas as sprites
-        all_sprites.draw(screen)
+        all_sprites.draw(scr.screen)
         all_sprites.update()
         # Texto do tempo de jogo
-        formated_text_time = font20.render(text_time, False, "white")
-        screen.blit(formated_text_time, (500, 20))
+        formated_text_time = scr.font20.render(text_time, False, "white")
+        scr.screen.blit(formated_text_time, (500, 20))
         # Barra de vida
-        pygame.draw.rect(screen, "white", (30, 30, 250, 10))
-        pygame.draw.rect(screen, "red", (30, 30, ship.health*50, 10))
+        pygame.draw.rect(scr.screen, "white", (30, 30, 250, 10))
+        pygame.draw.rect(scr.screen, "red", (30, 30, ship.health*50, 10))
     elif game_screen == "gameover":
         # Continua desenhando as estrelas
-        all_stars.draw(screen)
+        all_stars.draw(scr.screen)
         all_stars.update()
         # Textos da tela de game over
-        formated_text_time = font30.render(text_time, False, "white")
-        screen.blit(formated_text_game_over_1, (LARGURA/2 - formated_text_game_over_1.get_width()/2, 200))
-        screen.blit(formated_text_time, (LARGURA/2 - formated_text_time.get_width()/2, 285))
-        screen.blit(formated_text_game_over_2, (LARGURA/2 - formated_text_game_over_2.get_width()/2, 350))
+        formated_text_time = scr.font30.render(text_time, False, "white")
+        scr.screen.blit(scr.formated_text_game_over_1, (scr.LARGURA/2 - scr.formated_text_game_over_1.get_width()/2, 200))
+        scr.screen.blit(formated_text_time, (scr.LARGURA/2 - formated_text_time.get_width()/2, 285))
+        scr.screen.blit(scr.formated_text_game_over_2, (scr.LARGURA/2 - scr.formated_text_game_over_2.get_width()/2, 350))
     elif game_screen == "start":
         # Continua desenhando as estrelas
-        all_stars.draw(screen)
+        all_stars.draw(scr.screen)
         all_stars.update()
         # Textos da tela de start
-        screen.blit(formated_text_start_1, (LARGURA/2 - formated_text_start_1.get_width()/2, 200))
-        screen.blit(formated_text_start_2, (LARGURA/2 - formated_text_start_2.get_width()/2, 350))
-        screen.blit(formated_text_start_3, (LARGURA/2 - formated_text_start_3.get_width()/2, 375))
-        screen.blit(formated_text_start_4, (LARGURA/2 - formated_text_start_4.get_width()/2, 400))
+        scr.screen.blit(scr.formated_text_start_1, (scr.LARGURA/2 - scr.formated_text_start_1.get_width()/2, 200))
+        scr.screen.blit(scr.formated_text_start_2, (scr.LARGURA/2 - scr.formated_text_start_2.get_width()/2, 350))
+        scr.screen.blit(scr.formated_text_start_3, (scr.LARGURA/2 - scr.formated_text_start_3.get_width()/2, 375))
+        scr.screen.blit(scr.formated_text_start_4, (scr.LARGURA/2 - scr.formated_text_start_4.get_width()/2, 400))
 
     pygame.display.flip()
