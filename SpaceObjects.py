@@ -9,6 +9,16 @@ from screens import ALTURA, LARGURA
 
 # Classe abstrata que define o que todo objeto espacial deve ter
 class SpaceObject(ABC, pygame.sprite.Sprite):
+    """
+    Classe de objeto espacial, que causa dano na nave.
+
+    :ivar __image: Imagem do objeto.
+    :ivar __rect: Retângulo utilizado para orientar a imagem.
+    :ivar __x: Coordenada x do objeto.
+    :ivar __y: Coordenada y do objeto.
+    :ivar __speed: Velocidade do objeto.
+    :ivar __atual: 
+    """
     #Inicializador do objeto e definições dos sprites
     def __init__(self, y, list_images):
         pygame.sprite.Sprite.__init__(self)
