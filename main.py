@@ -7,6 +7,7 @@ from sprites import imgs_space, list_images_big_meteor, list_images_fireball
 from space_objects import BigMeteor, Comet
 from sounds import player_shot_sound, destruction_sound, gameover_sound
 from alien import Ufo, Laser
+from random import randrange
 
 # Inicializando o pygame
 pygame.init()
@@ -18,7 +19,7 @@ pygame.mixer.music.play(-1)
 clock = pygame.time.Clock()
 
 def game_init():
-    global all_sprites, all_enemies, all_stars, all_player_shots, player_shots_cooldown, shots, game_time, game_screen, ship, player_shots_cooldown, shots, alien_shot_cooldown, ufo,all_alien_shots, alien_group, alien_collision_cooldown, gameover_sound_played
+    global all_sprites, all_enemies, all_stars, all_player_shots, player_shots_cooldown, shots, game_time, game_screen, ship, player_shots_cooldown, shots, alien_shot_cooldown, ufo,all_alien_shots, alien_group, alien_collision_cooldown, gameover_sound_played, points, points_multiplier, spawn_cooldown
     # Grupo com todos os objetos que serão exibidos
     all_sprites = pygame.sprite.Group()
     # Grupo com todos os inimigos
@@ -59,8 +60,11 @@ def game_init():
     ufo = Ufo()
     all_sprites.add(ufo)
     alien_group.add(ufo)
-    # Tempo de jogo
-    game_time = 0
+    # Cooldown de spawn dos inimigos
+    spawn_cooldown = 0
+    # Pontuação
+    points = 0
+    points_multiplier = 0
     # Variável para checar se o player perdeu
     game_screen = "start"
     # Variável para controlar a reprodução do som de game over para tocar apenas 1 vez
@@ -120,14 +124,6 @@ while True:
     enemy_collisions = pygame.sprite.spritecollide(ship, all_enemies, True, pygame.sprite.collide_mask)
 
     if enemy_collisions:
-        # Cria um novo meteoro no lugar do que foi destruído
-        new_meteor = BigMeteor(-500, list_images_big_meteor)
-        all_sprites.add(new_meteor)
-        all_enemies.add(new_meteor)
-        # Cria um novo cometa no lugar
-        fireball = Comet(-500, list_images_fireball)
-        all_sprites.add(fireball)
-        all_enemies.add(fireball)
         # Dá dano na nave
         ship.take_damage()
 
@@ -138,16 +134,8 @@ while True:
     # para aumentar a dificuldade com o tempo
 
     if player_shot_collisions:
-        # Cria um novo meteoro
-        new_meteor = BigMeteor(-500, list_images_big_meteor)
-        all_sprites.add(new_meteor)
-        all_enemies.add(new_meteor)
-        # Cria um novo cometa
-        fireball = Comet(-500, list_images_fireball)
-        all_sprites.add(fireball)
-        all_enemies.add(fireball)
         # Ganha pontos ao destruir o inimigo
-        game_time += 200
+        points += 200
         destruction_sound.play()
 
     # Adicionando uma colisão com o próprio ovni
@@ -160,9 +148,22 @@ while True:
         alien_collision_cooldown = 0
 
     # Dá um de vida à nave a cada 100 pontos
-    if game_time > 0 and game_time % 1000 == 0:
+    if points//1000 > points_multiplier:
         ship.increase_health()
+        points_multiplier += 1
         
+    # Spawna novos inimigos de tempos em tempos
+    if spawn_cooldown > 180:
+        # Novo meteoro
+        new_meteor = BigMeteor(randrange(-800, -200), list_images_big_meteor)
+        all_sprites.add(new_meteor)
+        all_enemies.add(new_meteor)
+        # Novo cometa
+        fireball = Comet(randrange(-800, -200), list_images_fireball)
+        all_sprites.add(fireball)
+        all_enemies.add(fireball)
+        spawn_cooldown = 0
+
     # Caso a vida chegue a 0, tela de game over
     if ship.health <= 0:
         game_screen = "gameover"
@@ -171,14 +172,15 @@ while True:
             gameover_sound_played = True
 
     # Texto da pontuação
-    text_time = f"{game_time//10}"
+    text_time = f"{points//10}"
 
     # Configuração das telas
     if game_screen == "game":
         # Atualiando as variáveis
         player_shots_cooldown += 1
         alien_shot_cooldown += 1
-        game_time += 1
+        points += 1
+        spawn_cooldown += 1
         # Desenhando e atualizando todas as sprites
         all_sprites.draw(screen)
         all_sprites.update()
