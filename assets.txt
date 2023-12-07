@@ -7,7 +7,10 @@ IMAGENS:
 -- Nave: https://opengameart.org/content/spaceship-tutorial-0
 -- Tiro do player: https://opengameart.org/content/assets-free-laser-bullets-pack-2020
 -- Meteoro grande: https://opengameart.org/content/asteroids
+-- Ovni : https://opengameart.org/content/ufdish-bleeds-game-art
+-- Laser do ovni: https://opengameart.org/content/3-lasers
 
 SONS:
 -- Música: https://youtu.be/HV1CMDhemt0
 -- Tiro do player: https://opengameart.org/content/laser-fire
+-- Efeito alien : https://pixabay.com/pt/sound-effects/alien-voice-102709/
