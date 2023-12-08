@@ -29,14 +29,13 @@ class Ufo(pygame.sprite.Sprite):
         self.__image_ufo = spr.list_images_ufo
 
         # Uma variável para alternar entre as imagens 
-        self.__index_lista = 0
-        self.__image = self.image_ufo[self.index_lista]
+        self.__index_list = 0
+        self.__image = self.image_ufo[self.index_list]
 
         self.__rect = self.image.get_rect()
         
         # Definindo onde vai ser a primeira geração do objeto
         self.rect.x = - LARGURA
-        self.rect.y = 50
         
         # Sorteando a posição y
         self.__direction = randint(0,1)
@@ -47,7 +46,7 @@ class Ufo(pygame.sprite.Sprite):
     @property
     def shoot(self):
         """
-        Propriedade do atributo shot
+        Propriedade do atributo shoot
         """
         return self.__shoot
     
@@ -68,16 +67,16 @@ class Ufo(pygame.sprite.Sprite):
     @property
     def direction(self):
         """
-        Propriedade do atributo __direction
+        Propriedade do atributo direction
         """
         return self.__direction
     
     @property
-    def index_lista(self):
+    def index_list(self):
         """
-        Propriedae do atributo index_lista
+        Propriedae do atributo index_list
         """
-        return self.__index_lista
+        return self.__index_list
     
     @property
     def image_ufo(self):
@@ -88,24 +87,24 @@ class Ufo(pygame.sprite.Sprite):
     
     # Setter dos atributos
     @shoot.setter
-    def shoot(self, new_shot):
+    def shoot(self, new_shoot):
         """
-        Setter para o atributo shot
+        Setter para o atributo shoot
 
-        :param new_shot: novo estado
-        :type new_shot: int
+        :param new_shoot: novo estado
+        :type new_shoot: int
         """
-        self.__shoot = new_shot
+        self.__shoot = new_shoot
 
-    @index_lista.setter
-    def index_lista(self, new_index):
+    @index_list.setter
+    def index_list(self, new_index):
         """
-        Setter do atributo index_lista
+        Setter do atributo index_list
 
         :param new_index: novo index para lista de imagens
         :type new_index: float
         """
-        self.__index_lista = new_index
+        self.__index_list = new_index
 
     @image.setter
     def image(self, new_image):
@@ -152,10 +151,10 @@ class Ufo(pygame.sprite.Sprite):
         Método para atualizar a imagem, movimento e outras variáveis do objeto
         """
         # Alternando entre as imagens 
-        if self.index_lista > 24:
-            self.index_lista = 0
-        self.index_lista += 0.25
-        self.image = self.image_ufo[int(self.index_lista)]
+        if self.index_list > 24:
+            self.index_list = 0
+        self.index_list += 0.25
+        self.image = self.image_ufo[int(self.index_list)]
 
         # Mover a nave pelo eixo x
         self.__move()
