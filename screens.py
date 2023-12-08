@@ -36,5 +36,3 @@ text_start_3 = "Aperte seta para cima para começar com as setas"
 formated_text_start_3 = font20.render(text_start_3, False, "white")
 text_start_4 = "Aperte espaço para atirar"
 formated_text_start_4 = font20.render(text_start_4, False, "white")
-
-# print(pygame.font.get_fonts())
