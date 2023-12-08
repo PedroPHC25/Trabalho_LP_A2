@@ -29,7 +29,6 @@ Além disso, ele possui os seguintes módulos na pasta raiz:
    :maxdepth: 2
    :caption: Contents:
 
-   main
    player
    space_sprites
    space_objects
