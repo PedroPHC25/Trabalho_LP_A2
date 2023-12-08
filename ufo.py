@@ -17,8 +17,8 @@ class Ufo(pygame.sprite.Sprite):
     :ivar __index_lista: Variável para alternar entre as imagens da lista
     :ivar __image: imagem atual da tela
     :ivar __rect: Retângulo ao redor da imagem
-    :ivar __direcao: Variável que define se o objeto está acima ou no meio da tela (gerada aleatoriamente)
-    :ivar __atirar: Variável para armazenar se o objeto pode acionar o laser
+    :ivar __direction: Variável que define se o objeto está acima ou no meio da tela (gerada aleatoriamente)
+    :ivar __shoot: Variável para armazenar se o objeto pode acionar o laser
     """
     def __init__(self):
         """
@@ -39,17 +39,17 @@ class Ufo(pygame.sprite.Sprite):
         self.rect.y = 50
         
         # Sorteando a posição y
-        self.__direcao = randint(0,1)
+        self.__direction = randint(0,1)
 
-        self.__atirar = 0
+        self.__shoot = 0
 
     # Prpriedades do objeto
     @property
-    def atirar(self):
+    def shot(self):
         """
-        Propriedade do atributo atirar
+        Propriedade do atributo shot
         """
-        return self.__atirar
+        return self.__shoot
     
     @property
     def rect(self):
@@ -66,11 +66,11 @@ class Ufo(pygame.sprite.Sprite):
         return self.__image
     
     @property
-    def direcao(self):
+    def direction(self):
         """
-        Propriedade do atributo direcao
+        Propriedade do atributo __direction
         """
-        return self.__direcao
+        return self.__direction
     
     @property
     def index_lista(self):
@@ -87,15 +87,15 @@ class Ufo(pygame.sprite.Sprite):
         return self.__image_ufo
     
     # Setter dos atributos
-    @atirar.setter
-    def atirar(self, new_atirar):
+    @shot.setter
+    def shot(self, new_shot):
         """
-        Setter para o atributo atirar
+        Setter para o atributo shot
 
-        :param new_atirar: novo estado
-        :type new_atirar: int
+        :param new_shot: novo estado
+        :type new_shot: int
         """
-        self.__atirar = new_atirar
+        self.__shoot = new_shot
 
     @index_lista.setter
     def index_lista(self, new_index):
@@ -117,15 +117,15 @@ class Ufo(pygame.sprite.Sprite):
         """
         self.__image = new_image
 
-    @direcao.setter
-    def direcao(self, new_direction):
+    @direction.setter
+    def direction(self, new_direction):
         """
-        Setter do atributo direcao
+        Setter do atributo direction
 
         :param new_direction: nova direção da nave
         :type new_direction: int
         """
-        self.__direcao = new_direction
+        self.__direction = new_direction
 
     def __move(self):
         """
@@ -135,17 +135,17 @@ class Ufo(pygame.sprite.Sprite):
         self.rect.x += 1
 
         # Definindo a posição y
-        if self.direcao == 0:
+        if self.direction == 0:
             self.rect.y = 50
 
-        if self.direcao == 1:
+        if self.direction == 1:
             self.rect.y = ALTURA//2       
 
         # Definindo o ciclo de ressurgimento
         if self.rect.x > 2*LARGURA:
             self.rect.x = - LARGURA
             # Sorteando a posição do y
-            self.direcao = randint(0,1)
+            self.direction = randint(0,1)
 
     def update(self):
         """
@@ -162,9 +162,9 @@ class Ufo(pygame.sprite.Sprite):
 
         # Se a nave  estiver na tela a variável será verdadeira
         if self.rect.x > 10 and self.rect.x < LARGURA:
-            self.atirar = 1
+            self.shot = 1
         else:
-            self.atirar = 0
+            self.shot = 0
 
         # Antes de passar na tela, o efeito sonoro é ativado
         if self.rect.x == -100:
@@ -224,7 +224,7 @@ class Laser(pygame.sprite.Sprite):
         Método para movimentação do laser pela tela
         """
         # O laser será acionando se o alien estiver acima da tela
-        if self.alien.direcao == 0:
+        if self.alien.direction == 0:
             self.rect.y += 2
 
     def update(self):
