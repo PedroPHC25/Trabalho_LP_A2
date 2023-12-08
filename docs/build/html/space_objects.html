@@ -3,7 +3,7 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="prev" title="Arquivo space_sprites" href="space_sprites.html" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Arquivo ufo" href="ufo.html" /><link rel="prev" title="Arquivo space_sprites" href="space_sprites.html" />
 
     <!-- Generated with Sphinx 6.2.1 and Furo 2023.09.10 -->
         <title>Arquivo space_objects - Space War 0.1 documentation</title>
@@ -159,6 +159,7 @@
 <li class="toctree-l1"><a class="reference internal" href="player.html">Arquivo <cite>player</cite></a></li>
 <li class="toctree-l1"><a class="reference internal" href="space_sprites.html">Arquivo <cite>space_sprites</cite></a></li>
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Arquivo <cite>space_objects</cite></a></li>
+<li class="toctree-l1"><a class="reference internal" href="ufo.html">Arquivo <cite>ufo</cite></a></li>
 </ul>
 
 </div>
@@ -318,8 +319,6 @@ Herdado da classe base SpaceObject.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">space_objects.</span></span><span class="sig-name descname"><span class="pre">Comet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_images</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#space_objects.Comet" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#space_objects.SpaceObject" title="space_objects.SpaceObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpaceObject</span></code></a></p>
 <p>Classe que representa um cometa no jogo, derivada da classe SpaceObject.</p>
-<p>Métodos:
-- _move(): Método responsável por controlar a movimentação do cometa.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="space_objects.Comet._abc_impl">
 <span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#space_objects.Comet._abc_impl" title="Permalink to this definition">#</a></dt>
@@ -328,18 +327,8 @@ Herdado da classe base SpaceObject.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="space_objects.Comet._move">
 <span class="sig-name descname"><span class="pre">_move</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#space_objects.Comet._move" title="Permalink to this definition">#</a></dt>
-<dd><p>Redefine o método abstrato _move() da classe pai SpaceObject.</p>
-<p>Regras de movimentação do cometa:
-1. Se a posição y do cometa for maior que ALTURA + 100,</p>
-<blockquote>
-<div><p>reposiciona o cometa acima da tela em uma posição aleatória.</p>
-</div></blockquote>
-<ol class="arabic simple" start="2">
-<li><p>Define a velocidade horizontal (x_speed) do cometa como 0.</p></li>
-<li><p>Atualiza a posição y do cometa baseada na sua velocidade vertical (y_speed).</p></li>
-<li><p>Se a posição x do cometa ultrapassar os limites da tela,
-inverte a direção do movimento horizontal multiplicando x_speed por -1.</p></li>
-</ol>
+<dd><p>Método que movimenta o objeto espacial.
+Herdado da classe base Space Object.</p>
 </dd></dl>
 
 </dd></dl>
@@ -351,7 +340,15 @@ inverte a direção do movimento horizontal multiplicando x_speed por -1.</p></l
       <footer>
         
         <div class="related-pages">
-          
+          <a class="next-page" href="ufo.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Arquivo <cite>ufo</cite></div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
           <a class="prev-page" href="space_sprites.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
