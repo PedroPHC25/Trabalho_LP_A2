@@ -18,7 +18,11 @@ pygame.mixer.music.play(-1)
 # Relógio para controlar os ticks do jogo
 clock = pygame.time.Clock()
 
+# Função para inicializar e resetar o jogo
 def game_init():
+    """
+    Função que inicializa todos os objetos e variáveis do jogo.
+    """
     global all_sprites, all_enemies, all_stars, all_player_shots, player_shots_cooldown, \
         shots, ship, player_shots_cooldown, shots, alien_shot_cooldown, \
         ufo, alien_group, alien_collision_cooldown, gameover_sound_played, \
@@ -78,6 +82,7 @@ down_key = K_s
 left_key = K_a
 right_key = K_d
 
+# Inicializando o jogo
 game_init()
 game_screen = "start"
 
@@ -113,7 +118,7 @@ while True:
                     right_key = K_RIGHT
                     game_screen = "game"
 
-    # Acionando o laser quando o ovni está na tela e o ovni esta acima da tela
+    # Acionando o laser quando o ovni está na tela e na parte de cima da tela
     if ufo.atirar == True and alien_shot_cooldown > 60 and ufo.direcao == 0:
         laser_shot = Laser(ufo)
         all_sprites.add(laser_shot)
@@ -149,9 +154,6 @@ while True:
     # Variável das colisões dos tiros da nave com os inimigos
     player_shot_collisions = pygame.sprite.groupcollide(all_player_shots, all_enemies, True, True, pygame.sprite.collide_mask)
 
-    # A cada dano levado ou objeto destruído, a quantidade de inimigos aumenta
-    # para aumentar a dificuldade com o tempo
-
     if player_shot_collisions:
         # Ganha pontos ao destruir o inimigo
         points += 200
@@ -186,6 +188,7 @@ while True:
     # Caso a vida chegue a 0, tela de game over
     if ship.health <= 0:
         game_screen = "gameover"
+        # Tocando o som de morte apenas uma vez
         if gameover_sound_played == False:
             gameover_sound.play()
             gameover_sound_played = True

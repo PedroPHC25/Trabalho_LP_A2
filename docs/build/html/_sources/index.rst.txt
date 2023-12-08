@@ -10,6 +10,7 @@ Bem-vindo à documentação do projeto Space War!
    :maxdepth: 2
    :caption: Contents:
 
+   main
    player
    space_sprites
    space_objects
