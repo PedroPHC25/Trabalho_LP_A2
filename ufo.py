@@ -170,6 +170,7 @@ class Ufo(pygame.sprite.Sprite):
         if self.rect.x == -100:
             ufo_sound.play()
 
+
 # Definindo a classe que será o tiro do ovni
 class Laser(pygame.sprite.Sprite):
     """
