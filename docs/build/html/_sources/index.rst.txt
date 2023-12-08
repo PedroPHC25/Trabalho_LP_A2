@@ -23,7 +23,7 @@ Além disso, ele possui os seguintes módulos na pasta raiz:
 * **space_objects.py**: Contém a definição da classe `SpaceObject` e de suas classes filhas `BigMeteor`, responsável pelos asteroides, e `Comet`, responsável pelos cometas.
 * **space_sprites.py**: Contém a definição da classe `SpaceSprites`, correspondente à imagem de fundo do jogo.
 * **sprites.py**: Carrega todas as imagens utilizadas.
-* **ufo**: Contém a definição das classes `Ufo`, responsável pela nave alienígena, e `Laser`, responsável pelos seus tiros.
+* **ufo.py**: Contém a definição das classes `Ufo`, responsável pela nave alienígena, e `Laser`, responsável pelos seus tiros.
 
 .. toctree::
    :maxdepth: 2

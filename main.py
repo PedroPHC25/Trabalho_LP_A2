@@ -76,164 +76,163 @@ def game_init():
     # Variável para controlar a reprodução do som de game over para tocar apenas 1 vez
     gameover_sound_played = False
 
-if __name__ == "__main__":
-    # Teclas de controle
-    up_key = K_w
-    down_key = K_s
-    left_key = K_a
-    right_key = K_d
+# Teclas de controle
+up_key = K_w
+down_key = K_s
+left_key = K_a
+right_key = K_d
 
-    # Inicializando o jogo
-    game_init()
-    game_screen = "start"
+# Inicializando o jogo
+game_init()
+game_screen = "start"
 
-    while True:
-        clock.tick(60)
-        scr.screen.fill("black")
+while True:
+    clock.tick(60)
+    scr.screen.fill("black")
 
-        for event in pygame.event.get():
-            if event.type == QUIT:
-                pygame.quit()
-                exit()
-            if event.type == KEYDOWN:
-                # Criar um novo tiro e adicioná-lo ao grupo de sprites ao apertar a barra de espaço
-                if event.key == K_SPACE and player_shots_cooldown > 50:
-                    new_shot = Shot(ship.x, ship.y - 40)
-                    all_sprites.add(new_shot)
-                    all_player_shots.add(new_shot)
-                    player_shots_cooldown = 0
-                    player_shot_sound.play()
-                # Reiniciando o jogo ao apertar R
-                if event.key == K_r and game_screen == "gameover":
-                    game_init()
+    for event in pygame.event.get():
+        if event.type == QUIT:
+            pygame.quit()
+            exit()
+        if event.type == KEYDOWN:
+            # Criar um novo tiro e adicioná-lo ao grupo de sprites ao apertar a barra de espaço
+            if event.key == K_SPACE and player_shots_cooldown > 50:
+                new_shot = Shot(ship.x, ship.y - 40)
+                all_sprites.add(new_shot)
+                all_player_shots.add(new_shot)
+                player_shots_cooldown = 0
+                player_shot_sound.play()
+            # Reiniciando o jogo ao apertar R
+            if event.key == K_r and game_screen == "gameover":
+                game_init()
+                game_screen = "game"
+            if game_screen == "start":
+                # Começando o jogo com WASD ao apertar W
+                if event.key == K_w:
                     game_screen = "game"
-                if game_screen == "start":
-                    # Começando o jogo com WASD ao apertar W
-                    if event.key == K_w:
-                        game_screen = "game"
-                    # Começando o jogo com as setinhas ao apertar a setinha para cima
-                    if event.key == K_UP:
-                        up_key = K_UP
-                        down_key = K_DOWN
-                        left_key = K_LEFT
-                        right_key = K_RIGHT
-                        game_screen = "game"
+                # Começando o jogo com as setinhas ao apertar a setinha para cima
+                if event.key == K_UP:
+                    up_key = K_UP
+                    down_key = K_DOWN
+                    left_key = K_LEFT
+                    right_key = K_RIGHT
+                    game_screen = "game"
 
-        # Acionando o laser quando o ovni está na tela e na parte de cima da tela
-        if ufo.shoot == True and alien_shot_cooldown > 60 and ufo.direction == 0:
-            laser_shot = Laser(ufo)
-            all_sprites.add(laser_shot)
-            all_enemies.add(laser_shot)
-            alien_shot_cooldown = 0
+    # Acionando o laser quando o ovni está na tela e na parte de cima da tela
+    if ufo.shoot == True and alien_shot_cooldown > 60 and ufo.direction == 0:
+        laser_shot = Laser(ufo)
+        all_sprites.add(laser_shot)
+        all_enemies.add(laser_shot)
+        alien_shot_cooldown = 0
 
-        # aciona o efeito sonoro para o alien
-        if ufo.rect.x == -100:
-            ufo_sound.play()
+    # aciona o efeito sonoro para o alien
+    if ufo.rect.x == -100:
+        ufo_sound.play()
 
-        # Movimentação do player por WASD
-        if pygame.key.get_pressed()[up_key] and not pygame.key.get_pressed()[left_key] and not pygame.key.get_pressed()[right_key]:
-            ship.move("up")
-        if pygame.key.get_pressed()[down_key] and not pygame.key.get_pressed()[left_key] and not pygame.key.get_pressed()[right_key]:
-            ship.move("down")
-        if pygame.key.get_pressed()[left_key] and not pygame.key.get_pressed()[up_key] and not pygame.key.get_pressed()[down_key]:
-            ship.move("left")
-        if pygame.key.get_pressed()[right_key] and not pygame.key.get_pressed()[up_key] and not pygame.key.get_pressed()[down_key]:
-            ship.move("right")
-        if pygame.key.get_pressed()[up_key] and pygame.key.get_pressed()[left_key]:
-            ship.move("upleft")
-        if pygame.key.get_pressed()[up_key] and pygame.key.get_pressed()[right_key]:
-            ship.move("upright")
-        if pygame.key.get_pressed()[down_key] and pygame.key.get_pressed()[left_key]:
-            ship.move("downleft")
-        if pygame.key.get_pressed()[down_key] and pygame.key.get_pressed()[right_key]:
-            ship.move("downright")
+    # Movimentação do player por WASD
+    if pygame.key.get_pressed()[up_key] and not pygame.key.get_pressed()[left_key] and not pygame.key.get_pressed()[right_key]:
+        ship.move("up")
+    if pygame.key.get_pressed()[down_key] and not pygame.key.get_pressed()[left_key] and not pygame.key.get_pressed()[right_key]:
+        ship.move("down")
+    if pygame.key.get_pressed()[left_key] and not pygame.key.get_pressed()[up_key] and not pygame.key.get_pressed()[down_key]:
+        ship.move("left")
+    if pygame.key.get_pressed()[right_key] and not pygame.key.get_pressed()[up_key] and not pygame.key.get_pressed()[down_key]:
+        ship.move("right")
+    if pygame.key.get_pressed()[up_key] and pygame.key.get_pressed()[left_key]:
+        ship.move("upleft")
+    if pygame.key.get_pressed()[up_key] and pygame.key.get_pressed()[right_key]:
+        ship.move("upright")
+    if pygame.key.get_pressed()[down_key] and pygame.key.get_pressed()[left_key]:
+        ship.move("downleft")
+    if pygame.key.get_pressed()[down_key] and pygame.key.get_pressed()[right_key]:
+        ship.move("downright")
 
-        # Variável das colisões dos inimigos com a nave
-        enemy_collisions = pygame.sprite.spritecollide(ship, all_enemies, True, pygame.sprite.collide_mask)
+    # Variável das colisões dos inimigos com a nave
+    enemy_collisions = pygame.sprite.spritecollide(ship, all_enemies, True, pygame.sprite.collide_mask)
 
-        if enemy_collisions:
-            # Dá dano na nave
-            ship.take_damage()
-            damage_sound.play()
+    if enemy_collisions:
+        # Dá dano na nave
+        ship.take_damage()
+        damage_sound.play()
 
-        # Variável das colisões dos tiros da nave com os inimigos
-        player_shot_collisions = pygame.sprite.groupcollide(all_player_shots, all_enemies, True, True, pygame.sprite.collide_mask)
+    # Variável das colisões dos tiros da nave com os inimigos
+    player_shot_collisions = pygame.sprite.groupcollide(all_player_shots, all_enemies, True, True, pygame.sprite.collide_mask)
 
-        if player_shot_collisions:
-            # Ganha pontos ao destruir o inimigo
-            points += 200
-            destruction_sound.play()
+    if player_shot_collisions:
+        # Ganha pontos ao destruir o inimigo
+        points += 200
+        destruction_sound.play()
 
-        # Adicionando uma colisão com o próprio ovni
-        alien_collision = pygame.sprite.spritecollide(ship, alien_group, False)
-        alien_collision_cooldown += 1
+    # Adicionando uma colisão com o próprio ovni
+    alien_collision = pygame.sprite.spritecollide(ship, alien_group, False)
+    alien_collision_cooldown += 1
 
-        # Definindo dano por segundo 
-        if alien_collision_cooldown > 60 and alien_collision:
-            ship.take_damage()
-            alien_collision_cooldown = 0
+    # Definindo dano por segundo 
+    if alien_collision_cooldown > 60 and alien_collision:
+        ship.take_damage()
+        alien_collision_cooldown = 0
 
-        # Dá um de vida à nave a cada 100 pontos
-        if points//1000 > points_multiplier:
-            ship.increase_health()
-            points_multiplier += 1
-            
-        # Spawna novos inimigos de tempos em tempos
-        if spawn_cooldown > 180:
-            # Novo meteoro
-            new_meteor = BigMeteor(randrange(-800, -200), list_images_big_meteor)
-            all_sprites.add(new_meteor)
-            all_enemies.add(new_meteor)
-            # Novo cometa
-            fireball = Comet(randrange(-800, -200), list_images_fireball)
-            all_sprites.add(fireball)
-            all_enemies.add(fireball)
-            spawn_cooldown = 0
+    # Dá um de vida à nave a cada 100 pontos
+    if points//1000 > points_multiplier:
+        ship.increase_health()
+        points_multiplier += 1
+        
+    # Spawna novos inimigos de tempos em tempos
+    if spawn_cooldown > 180:
+        # Novo meteoro
+        new_meteor = BigMeteor(randrange(-800, -200), list_images_big_meteor)
+        all_sprites.add(new_meteor)
+        all_enemies.add(new_meteor)
+        # Novo cometa
+        fireball = Comet(randrange(-800, -200), list_images_fireball)
+        all_sprites.add(fireball)
+        all_enemies.add(fireball)
+        spawn_cooldown = 0
 
-        # Caso a vida chegue a 0, tela de game over
-        if ship.health <= 0:
-            game_screen = "gameover"
-            # Tocando o som de morte apenas uma vez
-            if gameover_sound_played == False:
-                gameover_sound.play()
-                gameover_sound_played = True
+    # Caso a vida chegue a 0, tela de game over
+    if ship.health <= 0:
+        game_screen = "gameover"
+        # Tocando o som de morte apenas uma vez
+        if gameover_sound_played == False:
+            gameover_sound.play()
+            gameover_sound_played = True
 
-        # Texto da pontuação
-        text_time = f"{points//10}"
+    # Texto da pontuação
+    text_time = f"{points//10}"
 
-        # Configuração das telas
-        if game_screen == "game":
-            # Atualiando as variáveis
-            player_shots_cooldown += 1
-            alien_shot_cooldown += 1
-            points += 1
-            spawn_cooldown += 1
-            # Desenhando e atualizando todas as sprites
-            all_sprites.draw(scr.screen)
-            all_sprites.update()
-            # Texto do tempo de jogo
-            formated_text_time = scr.font20.render(text_time, False, "white")
-            scr.screen.blit(formated_text_time, (500, 20))
-            # Barra de vida
-            pygame.draw.rect(scr.screen, "white", (30, 30, 250, 10))
-            pygame.draw.rect(scr.screen, "red", (30, 30, ship.health*50, 10))
-        elif game_screen == "gameover":
-            # Continua desenhando as estrelas
-            all_stars.draw(scr.screen)
-            all_stars.update()
-            # Textos da tela de game over
-            formated_text_time = scr.font30.render(text_time, False, "white")
-            scr.screen.blit(scr.formated_text_game_over_1, (scr.LARGURA/2 - scr.formated_text_game_over_1.get_width()/2, 200))
-            scr.screen.blit(formated_text_time, (scr.LARGURA/2 - formated_text_time.get_width()/2, 285))
-            scr.screen.blit(scr.formated_text_game_over_2, (scr.LARGURA/2 - scr.formated_text_game_over_2.get_width()/2, 350))
-        elif game_screen == "start":
-            # Continua desenhando as estrelas
-            all_stars.draw(scr.screen)
-            all_stars.update()
-            # Textos da tela de start
-            scr.screen.blit(scr.formated_text_start_1, (scr.LARGURA/2 - scr.formated_text_start_1.get_width()/2, 200))
-            scr.screen.blit(scr.formated_text_start_2, (scr.LARGURA/2 - scr.formated_text_start_2.get_width()/2, 350))
-            scr.screen.blit(scr.formated_text_start_3, (scr.LARGURA/2 - scr.formated_text_start_3.get_width()/2, 375))
-            scr.screen.blit(scr.formated_text_start_4, (scr.LARGURA/2 - scr.formated_text_start_4.get_width()/2, 400))
+    # Configuração das telas
+    if game_screen == "game":
+        # Atualiando as variáveis
+        player_shots_cooldown += 1
+        alien_shot_cooldown += 1
+        points += 1
+        spawn_cooldown += 1
+        # Desenhando e atualizando todas as sprites
+        all_sprites.draw(scr.screen)
+        all_sprites.update()
+        # Texto do tempo de jogo
+        formated_text_time = scr.font20.render(text_time, False, "white")
+        scr.screen.blit(formated_text_time, (500, 20))
+        # Barra de vida
+        pygame.draw.rect(scr.screen, "white", (30, 30, 250, 10))
+        pygame.draw.rect(scr.screen, "red", (30, 30, ship.health*50, 10))
+    elif game_screen == "gameover":
+        # Continua desenhando as estrelas
+        all_stars.draw(scr.screen)
+        all_stars.update()
+        # Textos da tela de game over
+        formated_text_time = scr.font30.render(text_time, False, "white")
+        scr.screen.blit(scr.formated_text_game_over_1, (scr.LARGURA/2 - scr.formated_text_game_over_1.get_width()/2, 200))
+        scr.screen.blit(formated_text_time, (scr.LARGURA/2 - formated_text_time.get_width()/2, 285))
+        scr.screen.blit(scr.formated_text_game_over_2, (scr.LARGURA/2 - scr.formated_text_game_over_2.get_width()/2, 350))
+    elif game_screen == "start":
+        # Continua desenhando as estrelas
+        all_stars.draw(scr.screen)
+        all_stars.update()
+        # Textos da tela de start
+        scr.screen.blit(scr.formated_text_start_1, (scr.LARGURA/2 - scr.formated_text_start_1.get_width()/2, 200))
+        scr.screen.blit(scr.formated_text_start_2, (scr.LARGURA/2 - scr.formated_text_start_2.get_width()/2, 350))
+        scr.screen.blit(scr.formated_text_start_3, (scr.LARGURA/2 - scr.formated_text_start_3.get_width()/2, 375))
+        scr.screen.blit(scr.formated_text_start_4, (scr.LARGURA/2 - scr.formated_text_start_4.get_width()/2, 400))
 
-        pygame.display.flip()
+    pygame.display.flip()

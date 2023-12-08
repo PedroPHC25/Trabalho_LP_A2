@@ -209,6 +209,7 @@
 <li><p><strong>__x</strong> – Coordenada x do objeto.</p></li>
 <li><p><strong>__y</strong> – Coordenada y do objeto.</p></li>
 <li><p><strong>__speed</strong> – Velocidade do objeto.</p></li>
+<li><p><strong>__health</strong> – Vida do objeto.</p></li>
 </ul>
 </dd>
 </dl>
@@ -257,7 +258,7 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="player.Ship.move">
 <span class="sig-name descname"><span class="pre">move</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#player.Ship.move" title="Permalink to this definition">#</a></dt>
-<dd><p>Método que movimenta a nave de acordo com o pressionamento das teclas WASD.</p>
+<dd><p>Método que movimenta a nave de acordo com o pressionamento das teclas WASD ou das setas.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>direction</strong> (<em>str</em>) – Indica a direção para a qual o movimento ocorrerá.</p>
@@ -346,8 +347,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="player.Shot.move">
-<span class="sig-name descname"><span class="pre">move</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#player.Shot.move" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="player.Shot.__move">
+<span class="sig-name descname"><span class="pre">__move</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#player.Shot.__move" title="Permalink to this definition">#</a></dt>
 <dd><p>Método que movimenta o tiro para cima.</p>
 </dd></dl>
 
@@ -438,7 +439,7 @@
 <li><a class="reference internal" href="#player.Shot.rect"><code class="docutils literal notranslate"><span class="pre">Shot.rect</span></code></a></li>
 <li><a class="reference internal" href="#player.Shot.speed"><code class="docutils literal notranslate"><span class="pre">Shot.speed</span></code></a></li>
 <li><a class="reference internal" href="#player.Shot.y"><code class="docutils literal notranslate"><span class="pre">Shot.y</span></code></a></li>
-<li><a class="reference internal" href="#player.Shot.move"><code class="docutils literal notranslate"><span class="pre">Shot.move()</span></code></a></li>
+<li><a class="reference internal" href="#player.Shot.__move"><code class="docutils literal notranslate"><span class="pre">Shot.__move()</span></code></a></li>
 <li><a class="reference internal" href="#player.Shot.update"><code class="docutils literal notranslate"><span class="pre">Shot.update()</span></code></a></li>
 </ul>
 </li>
