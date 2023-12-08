@@ -127,7 +127,7 @@ class Ufo(pygame.sprite.Sprite):
         """
         self.__direcao = new_direction
 
-    def move(self):
+    def __move(self):
         """
         Método para definir o movimento do objeto pela tela e ciclo do ressurgimento
         """
@@ -158,7 +158,7 @@ class Ufo(pygame.sprite.Sprite):
         self.image = self.image_ufo[int(self.index_lista)]
 
         # Mover a nave pelo eixo x
-        self.move()
+        self.__move()
 
         # Se a nave  estiver na tela a variável será verdadeira
         if self.rect.x > 10 and self.rect.x < LARGURA:
@@ -219,7 +219,7 @@ class Laser(pygame.sprite.Sprite):
         """
         return self.__alien
     
-    def move(self):
+    def __move(self):
         """
         Método para movimentação do laser pela tela
         """
@@ -232,4 +232,4 @@ class Laser(pygame.sprite.Sprite):
         Método para atualizar o movimento do objeto
         """
         # Atualizando as imagens e movimento
-        self.move()
+        self.__move()
