@@ -22,6 +22,13 @@ if os.environ.get('READTHEDOCS') == 'True':
         def set_volume(volume):
             pass
 
+        class DummyMusic:
+            @staticmethod
+            def load(filename):
+                pass
+
+        music = DummyMusic()
+
     def set_volume(volume):
         pass
 
