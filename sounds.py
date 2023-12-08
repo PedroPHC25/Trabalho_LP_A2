@@ -14,20 +14,18 @@ if os.environ.get('READTHEDOCS') == 'True':
             pass
 
     class DummyMixer:
-        @staticmethod
-        def init():
+        def __init__(self):
+            self.music = self.DummyMusic()
+
+        def init(self):
             pass
 
-        @staticmethod
-        def set_volume(volume):
+        def set_volume(self, volume):
             pass
 
         class DummyMusic:
-            @staticmethod
-            def load(filename):
+            def load(self, filename):
                 pass
-
-        music = DummyMusic()
 
     def set_volume(volume):
         pass
