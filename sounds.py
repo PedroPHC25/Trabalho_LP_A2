@@ -8,14 +8,18 @@ import os
 # Verifica se o código está sendo executado pelo Sphinx
 if os.environ.get('READTHEDOCS') == 'True':
     # Simula a ausência de áudio durante a geração da documentação no ReadTheDocs
+    class DummySound:
+        @staticmethod
+        def play():
+            pass
+
     class DummyMixer:
         @staticmethod
         def init():
             pass
 
-    class DummySound:
         @staticmethod
-        def play():
+        def set_volume(volume):
             pass
 
     pygame = DummyMixer()
