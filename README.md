@@ -1,6 +1,6 @@
 # Trabalho_LP_A2
 
-Trabalho referente à avaliação 1 da disciplina de Linguagens de Programação do 2º período do curso de Ciência de Dados e Inteligência Artificial da Fundação Getúlio Vargas (FGV).
+Trabalho referente à avaliação 2 da disciplina de Linguagens de Programação do 2º período do curso de Ciência de Dados e Inteligência Artificial da Fundação Getúlio Vargas (FGV).
 
 Alunos:
 
