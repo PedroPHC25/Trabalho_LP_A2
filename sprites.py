@@ -7,7 +7,7 @@ import pygame
 import os
 from space_sprites import SpaceSprites
 
-##############################################  PLAYER SHIP  ##########################################################
+####################################################  PLAYER SHIP  ##########################################################
 
 # Carregando a imagem da nave
 img_ship = pygame.image.load("images/ship/Spaceship_tut.png")
