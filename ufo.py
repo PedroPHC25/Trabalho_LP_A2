@@ -45,7 +45,7 @@ class Ufo(pygame.sprite.Sprite):
 
     # Prpriedades do objeto
     @property
-    def shot(self):
+    def shoot(self):
         """
         Propriedade do atributo shot
         """
@@ -87,8 +87,8 @@ class Ufo(pygame.sprite.Sprite):
         return self.__image_ufo
     
     # Setter dos atributos
-    @shot.setter
-    def shot(self, new_shot):
+    @shoot.setter
+    def shoot(self, new_shot):
         """
         Setter para o atributo shot
 
@@ -162,9 +162,9 @@ class Ufo(pygame.sprite.Sprite):
 
         # Se a nave  estiver na tela a variável será verdadeira
         if self.rect.x > 10 and self.rect.x < LARGURA:
-            self.shot = 1
+            self.shoot = 1
         else:
-            self.shot = 0
+            self.shoot = 0
 
         # Antes de passar na tela, o efeito sonoro é ativado
         if self.rect.x == -100:
