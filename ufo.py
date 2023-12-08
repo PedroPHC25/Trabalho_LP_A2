@@ -6,7 +6,6 @@ import pygame
 from screens import LARGURA, ALTURA
 import sprites as spr
 from random import randint
-from sounds import ufo_sound
 
 # Definindo uma classes para o objeto ovni
 class Ufo(pygame.sprite.Sprite):
@@ -164,10 +163,6 @@ class Ufo(pygame.sprite.Sprite):
             self.shoot = 1
         else:
             self.shoot = 0
-
-        # Antes de passar na tela, o efeito sonoro é ativado
-        if self.rect.x == -100:
-            ufo_sound.play()
 
 
 # Definindo a classe que será o tiro do ovni

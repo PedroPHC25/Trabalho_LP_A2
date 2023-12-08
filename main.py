@@ -5,7 +5,7 @@ import screens as scr
 from player import Ship, Shot
 from sprites import imgs_space, list_images_big_meteor, list_images_fireball
 from space_objects import BigMeteor, Comet
-from sounds import player_shot_sound, destruction_sound, gameover_sound, damage_sound
+from sounds import player_shot_sound, destruction_sound, gameover_sound, damage_sound, ufo_sound
 from ufo import Ufo, Laser
 from random import randrange
 
@@ -125,6 +125,10 @@ if __name__ == "__main__":
             all_sprites.add(laser_shot)
             all_enemies.add(laser_shot)
             alien_shot_cooldown = 0
+
+        # aciona o efeito sonoro para o alien
+        if ufo.rect.x == -100:
+            ufo_sound.play()
 
         # Movimentação do player por WASD
         if pygame.key.get_pressed()[up_key] and not pygame.key.get_pressed()[left_key] and not pygame.key.get_pressed()[right_key]:
