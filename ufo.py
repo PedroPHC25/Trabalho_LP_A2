@@ -73,7 +73,7 @@ class Ufo(pygame.sprite.Sprite):
     @property
     def index_list(self):
         """
-        Propriedae do atributo index_list
+        Propriedade do atributo index_list
         """
         return self.__index_list
     
@@ -168,7 +168,7 @@ class Ufo(pygame.sprite.Sprite):
 # Definindo a classe que será o tiro do ovni
 class Laser(pygame.sprite.Sprite):
     """
-    Classe dos Lasers acionados pelo ovni
+    Classe do laser acionado pelo ovni
 
     :ivar __image: imagem do laser
     :ivar __alien: objeto que aciona o laser
