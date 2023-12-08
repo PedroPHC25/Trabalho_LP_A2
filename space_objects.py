@@ -17,7 +17,7 @@ class SpaceObject(ABC, pygame.sprite.Sprite):
     :ivar __x: Coordenada x do objeto.
     :ivar __y: Coordenada y do objeto.
     :ivar __speed: Velocidade do objeto.
-    :ivar __atual: Estado atual que definea mudança dos sprites e começa em zero.
+    :ivar __current: Estado atual que definea mudança dos sprites e começa em zero.
     """
     #Inicializador do objeto e definições dos sprites
     def __init__(self, y, list_images):
@@ -35,9 +35,9 @@ class SpaceObject(ABC, pygame.sprite.Sprite):
         self.__y = y
         
         # Imagem inicial que define o sprite e altera com o tempo
-        self.__atual= 0
+        self.__current= 0
         self.__list_images = list_images
-        self.__image = list_images[self.atual]
+        self.__image = list_images[self.current]
         self.__rect = self.image.get_rect()
         self.rect.center = (self.x, self.y) 
         # Velocidade do objeto
@@ -45,11 +45,11 @@ class SpaceObject(ABC, pygame.sprite.Sprite):
         self.__y_speed = 3
 
     @property
-    def atual(self):
+    def current(self):
         """
-        Propriedade do atributo atual.
+        Propriedade do atributo current.
         """
-        return self.__atual
+        return self.__current
     
     @property
     def image(self):
@@ -100,15 +100,15 @@ class SpaceObject(ABC, pygame.sprite.Sprite):
         """
         return self.__y_speed
     
-    @atual.setter
-    def atual(self, new_atual):
+    @current.setter
+    def current(self, new_current):
         """
-        Setter do atributo atual.
+        Setter do atributo current.
 
-        :param new_atual: tempo atual.
-        :type new_atual: int.
+        :param new_current: tempo atual.
+        :type new_current: int.
         """
-        self.__atual = new_atual
+        self.__current = new_current
 
     @image.setter
     def image(self, new_image):
@@ -116,7 +116,7 @@ class SpaceObject(ABC, pygame.sprite.Sprite):
         Setter do atributo image.
 
         :param new_image: nova imagem alterada.
-        :type new_atual: int.
+        :type new_current: int.
         """
         self.__image = new_image
 
@@ -165,11 +165,11 @@ class SpaceObject(ABC, pygame.sprite.Sprite):
         Atualizador da sprite da classe SpaceObject.
         """
         # Muda o estado de acordo com o tempo, para a atualização da sprite.
-        self.atual = self.atual + 0.3
-        if self.atual >= len(self.list_images):
-            self.atual = 0
+        self.current = self.current + 0.3
+        if self.current >= len(self.list_images):
+            self.current = 0
 
-        self.image = self.list_images[int(self.atual)]
+        self.image = self.list_images[int(self.current)]
         self.rect.center = (self.x, self.y)
         self._move()
 
