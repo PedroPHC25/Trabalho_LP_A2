@@ -13,6 +13,7 @@ Bem-vindo à documentação do projeto Space War!
    player
    space_sprites
    space_objects
+   ufo
 
 Indices and tables
 ==================
