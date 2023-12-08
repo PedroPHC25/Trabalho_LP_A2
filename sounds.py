@@ -5,6 +5,27 @@ Módulo responsável por carregar e configurar a música e os sons do jogo.
 import pygame
 import os
 
+# Verifica se o código está sendo executado pelo Sphinx
+if os.environ.get('READTHEDOCS') == 'True':
+    # Simula a ausência de áudio durante a geração da documentação no ReadTheDocs
+    class DummyMixer:
+        @staticmethod
+        def init():
+            pass
+
+    class DummySound:
+        @staticmethod
+        def play():
+            pass
+
+    pygame = DummyMixer()
+    pygame.mixer = DummyMixer()
+    pygame.mixer.Sound = DummySound
+else:
+    # Importa o Pygame normalmente quando não está gerando documentação
+    import pygame
+    pygame.mixer.init()
+
 # Pasta atual
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
