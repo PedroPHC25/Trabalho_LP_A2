@@ -7,22 +7,25 @@ import pygame
 import os
 from space_sprites import SpaceSprites
 
+# Pasta atual
+current_dir = os.path.dirname(os.path.abspath(__file__))
+
 ##############################################  PLAYER SHIP  ##########################################################
 
 # Carregando a imagem da nave
-img_ship = pygame.image.load("images/ship/Spaceship_tut.png")
+img_ship = pygame.image.load(os.path.join(current_dir, "images/ship/Spaceship_tut.png"))
 img_ship = pygame.transform.scale(img_ship, (img_ship.get_width()/3, img_ship.get_height()/3))
 
 # Carregando a imagem dos tiros
-img_shot = pygame.image.load("images/shot/20.png")
+img_shot = pygame.image.load(os.path.join(current_dir, "images/shot/20.png"))
 img_shot = pygame.transform.scale(img_shot, (img_shot.get_width()/5, img_shot.get_height()/5))
 
 # Lista com os caminhos de cada imagem de fundo
 paths_images_space = []
 
 # Adicionando cada caminho à lista
-for image in os.listdir("images/space"):
-    paths_images_space.append(os.path.join("images/space", image))
+for image in os.listdir(os.path.join(current_dir, "images/space")):
+    paths_images_space.append(os.path.join(os.path.join(current_dir, "images/space"), image))
 
 # Coordenada y da primeira imagem de fundo
 y_image_space = 0
@@ -42,8 +45,8 @@ for each_image in paths_images_space:
 
 paths_images_big_meteor = []
 
-for image in os.listdir("images/big_meteor"):
-    paths_images_big_meteor.append(os.path.join("images/big_meteor", image))
+for image in os.listdir(os.path.join(current_dir, "images/big_meteor")):
+    paths_images_big_meteor.append(os.path.join(os.path.join(current_dir, "images/big_meteor"), image))
 
 
 list_images_big_meteor = []
@@ -60,9 +63,9 @@ for each_image in paths_images_big_meteor:
 paths_images_fireball = []
 
 # Itera sobre os arquivos no diretório "images/fireball"
-for image in os.listdir("images/fireball"):
+for image in os.listdir(os.path.join(current_dir, "images/fireball")):
     # Adiciona o caminho completo da imagem à lista
-    paths_images_fireball.append(os.path.join("images/fireball", image))
+    paths_images_fireball.append(os.path.join(os.path.join(current_dir, "images/fireball"), image))
 
 # Lista para armazenar as imagens de fireball
 list_images_fireball = []
@@ -83,8 +86,8 @@ for each_image in paths_images_fireball:
 # Carregando as imagens da nave alien
 paths_images_ufo = []
 
-for image in os.listdir("images/ufo"):
-    paths_images_ufo.append(os.path.join("images/ufo", image))
+for image in os.listdir(os.path.join(current_dir, "images/ufo")):
+    paths_images_ufo.append(os.path.join(os.path.join(current_dir, "images/ufo"), image))
 
 list_images_ufo = []
 
@@ -94,5 +97,5 @@ for each_image in paths_images_ufo:
     list_images_ufo.append(img_ufo)
 
 # Carregando a imagem do laser
-img_laser= pygame.image.load("images/laser/blue_laser.png")
+img_laser= pygame.image.load(os.path.join(current_dir, "images/laser/blue_laser.png"))
 img_laser = pygame.transform.scale(img_laser, (img_laser.get_width()/5, img_shot.get_height()/5))
