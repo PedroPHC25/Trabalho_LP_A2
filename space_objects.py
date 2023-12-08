@@ -209,24 +209,15 @@ class Comet(SpaceObject):
     """
     Classe que representa um cometa no jogo, derivada da classe SpaceObject.
 
-    Métodos:
-    - _move(): Método responsável por controlar a movimentação do cometa.
     """
-
+#Redefinindo o movimento do cometa
     def _move(self):
         """
-        Redefine o método abstrato _move() da classe pai SpaceObject.
-
-        Regras de movimentação do cometa:
-        1. Se a posição y do cometa for maior que ALTURA + 100,
-           reposiciona o cometa acima da tela em uma posição aleatória.
-        2. Define a velocidade horizontal (x_speed) do cometa como 0.
-        3. Atualiza a posição y do cometa baseada na sua velocidade vertical (y_speed).
-        4. Se a posição x do cometa ultrapassar os limites da tela,
-           inverte a direção do movimento horizontal multiplicando x_speed por -1.
+        Método que movimenta o objeto espacial.
+        Herdado da classe base Space Object. 
         """
+        # Reposiciona o cometa acima da tela em uma posição aleatória
         if self.y > ALTURA + 100:
-            # Reposiciona o cometa acima da tela em uma posição aleatória
             self.y = randrange(-600, -200)
             self.x = randrange(0, 550)
 
