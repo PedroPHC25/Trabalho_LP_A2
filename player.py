@@ -18,6 +18,7 @@ class Ship(pygame.sprite.Sprite):
     :ivar __x: Coordenada x do objeto.
     :ivar __y: Coordenada y do objeto.
     :ivar __speed: Velocidade do objeto.
+    :ivar __health: Vida do objeto.
     """
     def __init__(self):
         """
@@ -113,7 +114,7 @@ class Ship(pygame.sprite.Sprite):
     # Método para movimentar a nave
     def move(self, direction):
         """
-        Método que movimenta a nave de acordo com o pressionamento das teclas WASD.
+        Método que movimenta a nave de acordo com o pressionamento das teclas WASD ou das setas.
 
         :param direction: Indica a direção para a qual o movimento ocorrerá.
         :type direction: str
@@ -252,7 +253,7 @@ class Shot(pygame.sprite.Sprite):
         self.__y = new_y
 
     # Método para movimentar o tiro
-    def move(self):
+    def __move(self):
         """
         Método que movimenta o tiro para cima.
         """
@@ -267,5 +268,5 @@ class Shot(pygame.sprite.Sprite):
         Atualizador da sprite da classe Ship.
         """
         # O "move" foi chamado aqui por praticidade, já que o update já seria chamado de qualquer forma
-        self.move()
+        self.__move()
         self.rect.center = (self.x, self.y)
