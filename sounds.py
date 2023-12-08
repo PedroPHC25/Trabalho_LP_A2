@@ -22,13 +22,14 @@ if os.environ.get('READTHEDOCS') == 'True':
         def set_volume(volume):
             pass
 
-        @staticmethod
-        def music():
-            pass
+    def set_volume(volume):
+        pass
 
     pygame = DummyMixer()
     pygame.mixer = DummyMixer()
     pygame.mixer.Sound = DummySound
+    pygame.mixer.music = DummyMixer()
+    pygame.mixer.music.set_volume = set_volume
 else:
     # Importa o Pygame normalmente quando não está gerando documentação
     import pygame
