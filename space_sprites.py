@@ -10,11 +10,11 @@ class SpaceSprites(pygame.sprite.Sprite):
     """
     Classe referente ao background do jogo.
 
-    :ivar image: Imagem de fundo.
-    :ivar rect: Retângulo utilizado para orientar a imagem.
-    :ivar x: Coordenada x da imagem.
-    :ivar y: Coordenada y da imagem.
-    :ivar speed: Velocidade de movimento da imagem.
+    :ivar __image: Imagem de fundo.
+    :ivar __rect: Retângulo utilizado para orientar a imagem.
+    :ivar __x: Coordenada x da imagem.
+    :ivar __y: Coordenada y da imagem.
+    :ivar __speed: Velocidade de movimento da imagem.
     """
     def __init__(self, x, y, image):
         """
