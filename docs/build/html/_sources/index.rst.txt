@@ -6,7 +6,7 @@
 Bem-vindo à documentação do projeto Space War!
 ==============================================
 
-Este projeto é referente à avaliação 2 da disciplina de Linguagens de Programação do curso de Ciência de Dados e Inteligência Artificial da Fundação Getúlio Vargas (FGV). \\
+Este projeto é referente à avaliação 2 da disciplina de Linguagens de Programação do curso de Ciência de Dados e Inteligência Artificial da Fundação Getúlio Vargas (FGV). \
 
 As pastas presentes nesse trabalho são:
 
