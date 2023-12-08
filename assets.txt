@@ -9,6 +9,7 @@ IMAGENS:
 -- Meteoro grande: https://opengameart.org/content/asteroids
 -- Ovni : https://opengameart.org/content/ufdish-bleeds-game-art
 -- Laser do ovni: https://opengameart.org/content/3-lasers
+-- Cometa: https://opengameart.org/content/fireball-spritesheet
 
 SONS:
 -- Música: https://youtu.be/HV1CMDhemt0
