@@ -22,6 +22,10 @@ if os.environ.get('READTHEDOCS') == 'True':
         def set_volume(volume):
             pass
 
+        @staticmethod
+        def music():
+            pass
+
     pygame = DummyMixer()
     pygame.mixer = DummyMixer()
     pygame.mixer.Sound = DummySound
